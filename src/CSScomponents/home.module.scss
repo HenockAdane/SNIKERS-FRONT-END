@@ -1,0 +1,82 @@
+.optionsOneDiv{
+    max-width: 100%;
+    width: 1253px;
+    height: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "featured shoe"
+    "featured clothing";
+    gap: 8px;
+    border: 1px green solid;
+    margin: 0 auto;
+
+
+    .options{
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        color: black;
+        text-decoration: none;
+        background-size: cover;
+    }
+    
+    .options p{
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        margin: 0 0 10px 0;
+    }
+
+    .allFeatured{
+        grid-area: featured;
+    }
+
+    .allShoes{
+        grid-area: shoe;
+    }
+
+    .allClothing{
+        grid-area: clothing;
+    }
+}
+
+.optionsTwoDiv{
+    max-width: 100%;
+    width: 1253px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border: 1px solid green;
+
+    .options{
+        width: 320px;
+        min-width: 32%;
+        min-height: 412px;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        color: black;
+        text-decoration: none;
+        background-size: cover;
+    }
+    
+    .options p{
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        margin: 0 0 10px 0;
+    }
+}
+
