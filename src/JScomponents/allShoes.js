@@ -9,7 +9,7 @@ function AllShoes() {
     }))
 
     useEffect(()=> {
-        fetch(`${process.env.API}shop/all/shoes`).then(res => res.json()).then(data => {
+        fetch(`${process.env.REACT_APP_APPLICATIONAPI}shop/all/shoes`).then(res => res.json()).then(data => {
             console.log(data)
             setstate(ps => ({
                 ...ps,

@@ -50,9 +50,8 @@ function App() {
   console.log(cartItems)
   // cartItems.forEach(items => cartItemsQuantity+= items.quantity)
 
-  // https://thawing-beyond-85989.herokuapp.com/
   useEffect(() => {
-    fetch(`${process.env.API}products`).then(res => res.json()).then(data => {
+    fetch(`${process.env.REACT_APP_APPLICATIONAPI}products`).then(res => res.json()).then(data => {
       setState(ps => ({
         ...ps,
         products: data

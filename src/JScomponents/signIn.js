@@ -44,7 +44,7 @@ function SignIn() {
         e.preventDefault()
 
 
-        fetch(`${process.env.API}signIn`, {
+        fetch(`${process.env.REACT_APP_APPLICATIONAPI}signIn`, {
             method: "POST",
             mode: "cors",
             headers: {

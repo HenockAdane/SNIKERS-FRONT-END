@@ -22,7 +22,7 @@ function SignUp() {
       const submit = (e) => {
           e.preventDefault()
 
-        fetch(`${process.env.API}signUp`, {
+        fetch(`${process.env.REACT_APP_APPLICATIONAPI}signUp`, {
             method: "POST",
             mode: "cors",
             headers: {
