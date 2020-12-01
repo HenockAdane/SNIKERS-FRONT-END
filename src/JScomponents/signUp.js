@@ -1,13 +1,5 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import styles from "../CSScomponents/signOut.module.css"
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-  } from "react-router-dom";
 
 function SignUp() {
 

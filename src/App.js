@@ -1,18 +1,14 @@
 import React, {useState, useEffect} from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import logo from './logo.svg';
 import './App.scss';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect
 } from "react-router-dom";
-import SignUp from "./JScomponents/signUp";
-import SignIn from "./JScomponents/signIn";
 import SignInOrUp from "./JScomponents/signInOrUp";
-import {addUser, removeUser} from "./ReduxComponents/userReducer"
+import {addUser} from "./ReduxComponents/userReducer"
 import Home from "./JScomponents/home";
 import MensPage from "./JScomponents/mensPage";
 import ProductBig from "./JScomponents/productBig";
@@ -102,7 +98,7 @@ function App() {
     <header className="AppHeader">
 
       <Link to="/" className="logoLink">
-      <img className="logo" src="/images/mainLogo.svg" />
+      <img className="logo" src="/images/mainLogo.svg" alt="main logo" />
       </Link>
 
 
@@ -112,7 +108,7 @@ function App() {
         <Link className="nav-links" to="/">Home</Link>
         <Link className="nav-links" to="/contact-us">Contact</Link>
 
-        {state.currentUser ? (<a href="#" className="nav-links" onClick={logOut}>SignOut</a>) : (<Link className="nav-links" to="/signInOrUp">SignIn/Up</Link>)}
+        {state.currentUser ? (<Link to="/signInOrUp" className="nav-links" onClick={logOut}>SignOut</Link>) : (<Link className="nav-links" to="/signInOrUp">SignIn/Up</Link>)}
 
         <div className="cartIconContainer" onClick={cartDisplay}>
           <img className="cartIcon" src="/images/shoppingCart/shopping-bag.svg" />

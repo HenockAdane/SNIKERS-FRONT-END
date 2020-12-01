@@ -1,11 +1,7 @@
 import React from 'react'
 import styles from "../CSScomponents/itemDiv.module.scss"
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    Redirect
   } from "react-router-dom";
 
 function ItemDiv(props) {

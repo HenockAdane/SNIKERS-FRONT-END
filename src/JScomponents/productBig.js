@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styles from "../CSScomponents/productBig.module.scss"
 import { faHeart } from "@fortawesome/fontawesome-free"
-import {addToCartAction, reducingFromCartAction} from "../ReduxComponents/cartReducer"
+import {addToCartAction} from "../ReduxComponents/cartReducer"
 
 
 function ProductBig(props) {

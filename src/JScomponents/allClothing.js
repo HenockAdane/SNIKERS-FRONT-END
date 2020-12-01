@@ -10,8 +10,10 @@ function AllClothing() {
     }))
 
     useEffect(()=> {
+        console.log(process.env.REACT_APP_API + "APIIIIIIIIIIII")
         fetch(`${process.env.REACT_APP_API}shop/all/clothing`).then(res => res.json()).then(data => {
             console.log(data)
+            
             setstate(ps => ({
                 ...ps,
                 products: data
