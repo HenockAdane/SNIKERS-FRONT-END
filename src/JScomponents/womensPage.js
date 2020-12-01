@@ -17,7 +17,7 @@ function WomensPage() {
     }))
 
     useEffect(()=> {
-        fetch(`${process.env.REACT_APP_APPLICATIONAPI}shop/womens`).then(res => res.json()).then(data => {
+        fetch(`${process.env.REACT_APP_API}shop/womens`).then(res => res.json()).then(data => {
             console.log(data)
             setstate(ps => ({
                 ...ps,

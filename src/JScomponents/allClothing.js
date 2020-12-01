@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+
 import styles from "../CSScomponents/allClothing.module.scss"
 import ItemDiv from './itemDiv';
 
@@ -9,7 +10,7 @@ function AllClothing() {
     }))
 
     useEffect(()=> {
-        fetch(`${process.env.REACT_APP_APPLICATIONAPI}shop/all/clothing`).then(res => res.json()).then(data => {
+        fetch(`${process.env.REACT_APP_API}shop/all/clothing`).then(res => res.json()).then(data => {
             console.log(data)
             setstate(ps => ({
                 ...ps,

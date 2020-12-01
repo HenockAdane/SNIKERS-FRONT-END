@@ -51,7 +51,7 @@ function App() {
   // cartItems.forEach(items => cartItemsQuantity+= items.quantity)
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_APPLICATIONAPI}products`).then(res => res.json()).then(data => {
+    fetch(`${process.env.REACT_APP_API}products`).then(res => res.json()).then(data => {
       setState(ps => ({
         ...ps,
         products: data

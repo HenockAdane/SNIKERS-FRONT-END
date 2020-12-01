@@ -39,7 +39,7 @@ function ConfirmationPage() {
 
     const formSubmit = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3001/confirmation`, {
+        fetch(`${process.env.REACT_APP_API}/confirmation`, {
             method: "POST",
             mode:"cors",
             headers: {
@@ -55,7 +55,7 @@ function ConfirmationPage() {
 
     const resendCode = (e) => {
         e.preventDefault()
-        fetch(`${process.env.REACT_APP_APPLICATIONAPI}resendConfirmationCode`, {
+        fetch(`${process.env.REACT_APP_API}resendConfirmationCode`, {
             method: "POST",
             mode:"cors",
             headers: {

@@ -81,7 +81,7 @@ function ContactPage() {
         
     const formSubmit = (e) => {
         e.preventDefault()
-        fetch(`${process.env.REACT_APP_APPLICATIONAPI}contact-us`, {
+        fetch(`${process.env.REACT_APP_API}contact-us`, {
             method: "POST",
             mode:"cors",
             headers: {
