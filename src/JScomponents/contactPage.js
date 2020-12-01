@@ -81,7 +81,7 @@ function ContactPage() {
         
     const formSubmit = (e) => {
         e.preventDefault()
-        fetch("http://localhost:3001/contact-us", {
+        fetch(`${process.env.API}contact-us`, {
             method: "POST",
             mode:"cors",
             headers: {

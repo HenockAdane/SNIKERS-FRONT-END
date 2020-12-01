@@ -17,7 +17,7 @@ function WomensPage() {
     }))
 
     useEffect(()=> {
-        fetch("http://localhost:3001/shop/womens").then(res => res.json()).then(data => {
+        fetch(`${process.env.API}shop/womens`).then(res => res.json()).then(data => {
             console.log(data)
             setstate(ps => ({
                 ...ps,

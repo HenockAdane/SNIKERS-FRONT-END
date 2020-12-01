@@ -17,7 +17,7 @@ function Home() {
 
 
     useEffect(() => {
-        fetch("http://localhost:3001/homeFeatured").then(res => res.json()).then(data => {
+        fetch(`${process.env.API}homeFeatured`).then(res => res.json()).then(data => {
             setState(ps => ({
                 ...ps,
                 featuredItems: data

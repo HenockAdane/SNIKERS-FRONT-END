@@ -9,7 +9,6 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import TaskContainer from "./taskContainer";
 import SignUp from "./JScomponents/signUp";
 import SignIn from "./JScomponents/signIn";
 import SignInOrUp from "./JScomponents/signInOrUp";
@@ -53,7 +52,7 @@ function App() {
 
   // https://thawing-beyond-85989.herokuapp.com/
   useEffect(() => {
-    fetch("http://localhost:3001/products").then(res => res.json()).then(data => {
+    fetch(`${process.env.API}products`).then(res => res.json()).then(data => {
       setState(ps => ({
         ...ps,
         products: data

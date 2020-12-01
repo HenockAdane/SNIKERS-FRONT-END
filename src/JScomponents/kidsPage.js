@@ -17,7 +17,7 @@ function KidsPage() {
     }))
 
     useEffect(()=> {
-        fetch("http://localhost:3001/shop/kids").then(res => res.json()).then(data => {
+        fetch(`${process.env.API}shop/kids`).then(res => res.json()).then(data => {
             console.log(data)
             let kids = data.filter(item => item.for.toLowerCase().includes("kid"))
             setstate(ps => ({

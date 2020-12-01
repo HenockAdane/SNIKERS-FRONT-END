@@ -10,7 +10,7 @@ function AllFeatured() {
     }))
 
     useEffect(()=> {
-        fetch("http://localhost:3001/shop/all/featured").then(res => res.json()).then(data => {
+        fetch(`${process.env.API}shop/all/featured`).then(res => res.json()).then(data => {
             console.log(data)
             setstate(ps => ({
                 ...ps,

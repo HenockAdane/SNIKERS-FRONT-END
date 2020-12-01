@@ -22,7 +22,7 @@ function SignUp() {
       const submit = (e) => {
           e.preventDefault()
 
-        fetch("http://localhost:3001/signUp", {
+        fetch(`${process.env.API}signUp`, {
             method: "POST",
             mode: "cors",
             headers: {
