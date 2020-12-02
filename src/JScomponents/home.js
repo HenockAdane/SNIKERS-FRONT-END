@@ -7,19 +7,7 @@ import {
 function Home() {
 
 
-    const [state, setState] = useState(() => ({
-        featuredItems: []
-    }))
 
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API}homeFeatured`).then(res => res.json()).then(data => {
-            setState(ps => ({
-                ...ps,
-                featuredItems: data
-            }))
-        })
-    },[])
 
 
 
