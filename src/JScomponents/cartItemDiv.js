@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import {useDispatch } from 'react-redux'
 import {addToCartAction, reducingFromCartAction} from "../ReduxComponents/cartReducer"
 import styles from "../CSScomponents/cartItemDiv.module.scss"
 
@@ -11,7 +11,6 @@ function CartItemDiv(props) {
         console.log(JSON.parse(localStorage.getItem("cartItems"))[0])
     }
 
-    const color = props.color
 
     const reduceQuantity = () => {
         dispatch(reducingFromCartAction({...props}))

@@ -30,7 +30,7 @@ function CheckOut() {
 
             {cartItems.map(item => (
                 <div className={styles.checkoutItems}>
-                    <img className={styles.itemTitles} src={item.frontImg} />
+                    <img className={styles.itemTitles} src={item.frontImg} alt="Product"/>
                     <p className={styles.itemTitles}>{item.title}  
                     <br/> Size: {item.size}
                     </p>

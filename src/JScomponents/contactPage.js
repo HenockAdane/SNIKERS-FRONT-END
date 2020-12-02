@@ -17,7 +17,6 @@ function ContactPage() {
     const inputChange = (e) => {
         let name = e.target.name;
         let value = e.target.value;
-        let height = e.target.scrollHeight
 
         setState(ps => ({
             ...ps,

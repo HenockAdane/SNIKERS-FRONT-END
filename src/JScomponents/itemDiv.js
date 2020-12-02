@@ -7,14 +7,12 @@ import {
 function ItemDiv(props) {
 
 
-    const addToCart = () => {
-        "bruh"
-    }
+
 
     return (
         <Link to={`/${props.id}`} className={styles.product}>
                 <div className={styles.imgContainer}>
-                    <img src={props.frontImg} />
+                    <img src={props.frontImg} alt="product"/>
                 </div>
                 <p>{props.title}</p>
                 <p className={styles.grey}>{props.for}'s {props.type}</p>

@@ -31,7 +31,7 @@ function ProductBig(props) {
                 sizes: [{size: "XS", className: styles.sizeBtns},{size: "S", className: styles.sizeBtns},{size: "M", className: styles.sizeBtns},{size: "L", className: styles.sizeBtns},{size: "XL", className: styles.sizeBtns},{size: "2XL", className: styles.sizeBtns},]
             }))
         }
-    }, [])
+    }, [props.type])
 
 
     const selectSize = (e) => {
@@ -48,7 +48,7 @@ function ProductBig(props) {
         }
 
         else{
-            let newSizes = state.sizes.map(a => a.size == value ? {...a, className: styles.selectedSize} : {...a, className: styles.sizeBtns})
+            let newSizes = state.sizes.map(a => `${a.size}` === value ? {...a, className: styles.selectedSize} : {...a, className: styles.sizeBtns})
 
             setState(ps => ({
                 ...ps,
@@ -100,7 +100,7 @@ function ProductBig(props) {
 
             <div className={styles.imageContainer}>
 
-                {props.images.map(image => <img src={image} className={styles.imgs}/>)}
+                {props.images.map(image => <img src={image} className={styles.imgs} alt="product" />)}
 
             </div>
 

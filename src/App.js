@@ -111,7 +111,7 @@ function App() {
         {state.currentUser ? (<Link to="/signInOrUp" className="nav-links" onClick={logOut}>SignOut</Link>) : (<Link className="nav-links" to="/signInOrUp">SignIn/Up</Link>)}
 
         <div className="cartIconContainer" onClick={cartDisplay}>
-          <img className="cartIcon" src="/images/shoppingCart/shopping-bag.svg" />
+          <img className="cartIcon" src="/images/shoppingCart/shopping-bag.svg" alt="cartIcon"/>
           <p className="itemCount">{cartItemsQuantity}</p>
         </div>
         
