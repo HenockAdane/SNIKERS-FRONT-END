@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import styles from "../CSScomponents/productBig.module.scss"
 import { faHeart } from "@fortawesome/fontawesome-free"
 import {addToCartAction} from "../ReduxComponents/cartReducer"
+import {addUser} from "../ReduxComponents/userReducer"
+
 
 
 function ProductBig(props) {
@@ -93,6 +95,23 @@ function ProductBig(props) {
         }
     }
 
+    const toggleFavourites = () => {
+        fetch(`${process.env.REACT_APP_API}toggle-favourites`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({...props})
+        }).then(res => res.json()).then(data => {
+            
+            dispatch(addUser(data))
+            console.log(data)
+
+        })
+        .catch(err => console.log(err))
+    }
+
     console.log(1000000000000000)
     return (
         <div className={styles.ProductBig}>
@@ -124,7 +143,7 @@ function ProductBig(props) {
                     </div>
 
                     <button className={styles.addToCartBtn} value="Add to Bag" onClick={addToCart}>Add to Bag</button>
-                    <button className={styles.favouriteBtn} value="FavouriteBtn">Favourite
+                    <button className={styles.favouriteBtn} value="FavouriteBtn" onClick={toggleFavourites}>Favourite
                     {faHeart}
                     </button>
 

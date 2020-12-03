@@ -22,6 +22,7 @@ import AllShoes from "./JScomponents/allShoes";
 import AllClothing from "./JScomponents/allClothing";
 import AllFeatured from "./JScomponents/allFeatured";
 import Profile from "./JScomponents/profile";
+import Favourites from "./JScomponents/favourites";
 
 function App() {
 
@@ -29,7 +30,10 @@ function App() {
   const [state, setState] = useState(()=> ({
     currentUser: null,
     products: [],
-    cartDisplay: "none"
+    cartDisplay: "none",
+    menuStyle: "menu",
+    ulStyle: ""
+
   }))
 
   const dispatch = useDispatch()
@@ -47,10 +51,27 @@ function App() {
   // cartItems.forEach(items => cartItemsQuantity+= items.quantity)
 
   useEffect(() => {
+
+    window.addEventListener("resize", (e)=>{
+      if (window.innerWidth > 768){
+        setState(ps => ({
+          ...ps,
+          ulStyle: "flex"
+        }))
+      }
+
+      else{
+        setState(ps=> ({
+          ...ps,
+          ulStyle: "none"
+        }))
+      }
+    })
+
     fetch(`${process.env.REACT_APP_API}products`).then(res => res.json()).then(data => {
       setState(ps => ({
         ...ps,
-        products: data
+        products: data,
       }))
       // console.log(data[data.length - 1]._id)
       console.log(84.95 * 3)
@@ -91,20 +112,51 @@ function App() {
       }))
     }
   }
+
+  const toggleMenu = (e) => {
+    console.log(e.target)
+
+    if (state.menuStyle === "menu"){
+      setState(ps => ({
+        ...ps,
+        menuStyle: "menu open",
+        ulStyle: "flex"
+      }))
+    }
+    else{
+      setState(ps => ({
+        ...ps,
+        menuStyle: "menu",
+        ulStyle: "none"
+      }))
+    }}
      
   return (
     <div className="App">
 
     <header className="AppHeader">
 
+    <div className="anotherMenu">
       <Link to="/" className="logoLink">
-      <img className="logo" src="/images/mainLogo.svg" alt="main logo" />
+      <img className="logo" src="/favicon.svg" alt="main logo" />
       </Link>
 
+      <div className="subContainer">
+        <Link className="cartIconContainer" to="/checkout">
+            <img className="cartIcon" src="/images/shoppingCart/shopping-bag.svg" alt="cartIcon"/>
+            <p className="itemCount">{cartItemsQuantity}</p>
+        </Link>
 
-      <ul className="AppUl">
+        <div className={state.menuStyle} onClick={toggleMenu}>
+              <div className="burger"></div>
+        </div>
+      </div>
+    </div>
 
-        <Link className="nav-links" to="/confirmation">confirmation</Link>
+
+      <ul className="AppUl" style={{display: state.ulStyle}}> 
+
+        <Link className="nav-links" to="/favourites">confirmation</Link>
         <Link className="nav-links" to="/">Home</Link>
         <Link className="nav-links" to="/contact-us">Contact</Link>
 
@@ -186,6 +238,11 @@ function App() {
         )}
         />
 
+        <Route exact path="/favourites" render={()=> (
+          state.currentUser ? (<Favourites />) : (<Redirect to="/" />) 
+        )}
+        />
+
         {/* {state.products.map(product => {
           (<Route exact={true} path={product._id} render={() => (<ProductBig img={product.images[0]}/>))
 
@@ -204,6 +261,7 @@ function App() {
         color={product.color[0]}
         style={product.details.materials[product.details.materials.length -1]}
         origins={product.details.origins}
+        id={product._id}
         
 
         />} />)}

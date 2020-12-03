@@ -25,7 +25,7 @@ function CheckOut() {
                 <p className={styles.headerTitles}>DESCRIPTION</p>
                 <p className={styles.headerTitles}>QUANTITY</p>
                 <p className={styles.headerTitles}>PRICE</p>
-                <p className={styles.headerTitles && styles.small}>REMOVE</p>
+                <p className={`${styles.headerTitles} ${styles.small}`}>REMOVE</p>
             </div>
 
             {cartItems.map(item => (

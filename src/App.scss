@@ -38,6 +38,10 @@ body{
   height: 50px;
 }
 
+.subContainer{
+  display: none;
+}
+
 .AppUl{
   width: 50%;
   height: 100%;
@@ -103,6 +107,102 @@ body{
       background-color: black;
       color: white;
   }
+}
+
+
+@media (max-width: 768px){
+  
+  .AppHeader{
+    flex-direction: column;
+  }
+
+  .anotherMenu{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .subContainer{
+    display: flex;
+  }
+
+  .AppUl{
+    display: none;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .nav-links{
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border: 1px solid red;
+  }
+
+  .menu
+  {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  border: 1px solid;
+  z-index: 1;
+  }
+
+  .burger
+  {
+  width:20px;
+  height: 3px;
+  background: black;
+  transition: all .2s ease-in-out;
+  border-radius: 20px
+  }
+
+  .burger::before,
+  .burger::after
+  {
+  content: "";
+  position:absolute;
+  width:20px;
+  height: 3px;
+  background: black;
+  transition: all .2s ease-in-out;
+  border-radius: 20px
+  }
+
+
+  .burger::before
+  {
+  transform: translateY(-9px)
+  }
+
+  .burger::after
+  {
+  transform: translateY(9px)
+  }
+
+  .menu.open .burger
+  {
+  transform: translateX(-50px);
+  background: transparent;
+  box-shadow:none
+  }
+
+  .menu.open .burger::before
+  {
+  transform: rotate(45deg) translate(35px,-35px);
+  }
+
+  .menu.open .burger::after
+  {
+  transform: rotate(-45deg) translate(35px, 35px);
+  }
+  
 }
 
 
