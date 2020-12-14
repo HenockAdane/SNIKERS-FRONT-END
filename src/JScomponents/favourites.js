@@ -7,6 +7,8 @@ import ItemDiv from './itemDiv';
 function Favourites() {
 
     const currentUser = useSelector(state => state.userReducer.currentUser)
+    console.log(currentUser.favouriteProduct)
+    //make products appear
 
     return (
         <div className={styles.container}>

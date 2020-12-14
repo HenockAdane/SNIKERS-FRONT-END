@@ -3,7 +3,6 @@ export const addToCartAction = (item) => ({
     item
 })
 
-
 export const reducingFromCartAction = (item) => ({
     type: "REDUCEFROMCART",
     item
@@ -13,6 +12,11 @@ export const removeFromCartAction = (item) => ({
     type: "REMOVEFROMCART",
     item
 })
+
+export const clearCartItems = () => ({
+    type: "CLEARCARTITEMS"
+})
+
 
 const addingToCartFunction = (cartItems, item) => {
     let exists = cartItems.find(a => a.title === item.title && a.color === item.color && a.size === item.size)
@@ -46,6 +50,7 @@ export const removeFromCartFunction = (cartItems, item) => {
     return cartItems.filter(a => a !== item)
 }
 
+
 const IS = {
     cartItems: [{color: "Black",
     for: "Men",
@@ -54,7 +59,9 @@ const IS = {
     quantity: 1,
     size: "12",
     title: "Nike Air Max Plus",
-    type: "Shoe"}]
+    type: "Shoe",
+    _id:"5fb3e107e9bc462028e7555b"
+}]
 }
 const cartItemReducer = (state = IS, action) => {
         switch(action.type){
@@ -64,6 +71,8 @@ const cartItemReducer = (state = IS, action) => {
                 return {...state, cartItems: reducingFromCartFunction(state.cartItems, action.item)}
             case "REMOVEFROMCART":
                 return {...state, cartItems: removeFromCartFunction(state.cartItems, action.item)}
+            case "CLEARCARTITEMS":
+                return {...state, cartItems: []}
             default: return state
         }
 }

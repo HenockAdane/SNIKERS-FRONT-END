@@ -21,8 +21,7 @@ import ConfirmationPage from "./JScomponents/confirmationPage";
 import AllShoes from "./JScomponents/allShoes";
 import AllClothing from "./JScomponents/allClothing";
 import AllFeatured from "./JScomponents/allFeatured";
-import Profile from "./JScomponents/profile";
-import Favourites from "./JScomponents/favourites";
+import MembersPage from "./JScomponents/membersPage";
 
 function App() {
 
@@ -87,14 +86,25 @@ function App() {
   }))
 
 
-  console.log(currentUser + "CURRENTTTTTTTTTTTTTTuserrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+  console.log(currentUser)
 
   },[currentUser])
   
 
   const logOut = () => {
 
-    return dispatch(addUser(null))
+    fetch(`${process.env.REACT_APP_API}signOut`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({})
+    }).then(res => res.json()).then(data => {
+      console.log(data)
+      dispatch(addUser(data.user))
+    }).catch(err => console.log(`ERROR FOR SIGNOUT API: ${err}`))
+
   }
 
   const cartDisplay = () => {
@@ -156,9 +166,9 @@ function App() {
 
       <ul className="AppUl" style={{display: state.ulStyle}}> 
 
-        <Link className="nav-links" to="/favourites">confirmation</Link>
         <Link className="nav-links" to="/">Home</Link>
         <Link className="nav-links" to="/contact-us">Contact</Link>
+        <Link className="nav-links" to="/member">Account</Link>
 
         {state.currentUser ? (<Link to="/signInOrUp" className="nav-links" onClick={logOut}>SignOut</Link>) : (<Link className="nav-links" to="/signInOrUp">SignIn/Up</Link>)}
 
@@ -171,7 +181,7 @@ function App() {
 
       <div className="cart-dropdown" style={{display: state.cartDisplay}}>
         <div className="cart-items">
-        {cartItems.length ? cartItems.map(a => <CartItemDiv frontImg={a.frontImg} title={a.title} quantity={a.quantity} price={a.price} size={a.size} color={a.color} />) : <p>Your Cart Is Empty</p>}
+        {cartItems.length ? cartItems.map(a => <CartItemDiv id={a._id} frontImg={a.frontImg} title={a.title} quantity={a.quantity} price={a.price} size={a.size} color={a.color} />) : <p>Your Cart Is Empty</p>}
         </div>
         <p>Total Price: £{cartItemsTotalPrice.toFixed(2)}</p>
         <Link to="/checkout">GO TO CHECKOUT</Link>
@@ -184,8 +194,7 @@ function App() {
     {/* <h1>{state.user ? "User is in" : "no user"}</h1> */}
     <h1>{`
     THINGS TO DO
-    1) Make a contact form and install nodemailer,
-    2) add local or session storeage`}</h1>
+    1) Account Settings API route`}</h1>
 
 
     <Switch>
@@ -227,10 +236,7 @@ function App() {
         )}
         />
 
-<Route exact={true} path="/profile" render={()=>(
-          <Profile name="Henock" createdAt="Jun 21st 2020"/>
-        )}
-        />
+
         
 
         <Route exact path="/confirmation" render={()=>(
@@ -238,10 +244,9 @@ function App() {
         )}
         />
 
-        <Route exact path="/favourites" render={()=> (
-          state.currentUser ? (<Favourites />) : (<Redirect to="/" />) 
-        )}
-        />
+        
+
+
 
         {/* {state.products.map(product => {
           (<Route exact={true} path={product._id} render={() => (<ProductBig img={product.images[0]}/>))
@@ -267,15 +272,57 @@ function App() {
         />} />)}
         
 
-<Route exact={true} path="/signInOrUp" render={()=>(
-                <SignInOrUp />  )}
+<Route exact={true} path="/signInOrUp" render={()=> 
+state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/settings" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignInOrUp />)}
         />
 
 <Route exact={true} path="/checkOut" render={()=>(
                 <CheckOut />  )}
         />
 
+<Route exact={false} path="/member" render={()=>(
+                state.currentUser && state.currentUser.confirmed ? (<MembersPage />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<Redirect to="/signInOrUp" />) )}
+        />
+
     </Switch>
+
+
+    <footer>
+
+      <div className="sectionOneContainer">
+
+        <div>
+          <li><Link to="/">HOME</Link></li>
+          <li><Link to="/signInOrUp">BECOME A MEMBER</Link></li>
+          <li><Link to="/contact-us">CONTACT US</Link></li>
+        </div>
+
+        <div>
+          <li><Link to="/">LOREM</Link></li>
+          <li><Link to="/">IPSUM</Link></li>
+          <li><Link to="/">DOLOR</Link></li>
+        </div>
+
+        <div>
+          <li><Link to="/">LOREM</Link></li>
+          <li><Link to="/">IPSUM</Link></li>
+          <li><Link to="/">DOLOR</Link></li>
+        </div>
+      </div>
+
+      <div className="socialMedia">
+          <button><img src="/images/social-Icon/instagram.svg" alt="instagram icon" /></button>
+
+          <button><img src="/images/social-Icon/youtube.svg" alt="youtube icon" /></button>
+
+          <button><img src="/images/social-Icon/twitter.svg" alt="twitter icon" /></button>
+
+          <button><img src="/images/social-Icon/youtube.svg" alt="youtube icon" /></button>
+
+          
+      </div>
+
+    </footer>
 
 
     

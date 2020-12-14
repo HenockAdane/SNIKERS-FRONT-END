@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from "../CSScomponents/checkOut.module.scss"
 import {addToCartAction, reducingFromCartAction, removeFromCartAction} from "../ReduxComponents/cartReducer"
+import StripeBtn from './stripeBtn'
 
 function CheckOut() {
 
@@ -15,6 +16,8 @@ function CheckOut() {
       cartItems.forEach(items => {
         cartItemsTotalPrice+= items.price * items.quantity
       })
+
+      cartItemsTotalPrice = cartItemsTotalPrice.toFixed(2)
     }
   
 
@@ -48,7 +51,15 @@ function CheckOut() {
                 </div>
             ))}
 
-            <h1>TOTAL:£{cartItemsTotalPrice.toFixed(2)}</h1>
+            <h1>TOTAL:£{cartItemsTotalPrice}</h1>
+            <StripeBtn cartItemsTotalPrice={cartItemsTotalPrice} cartItems={cartItems}/>
+            
+            <div style={{color: "red", margin: "15px 0"}}>
+                <h3>Please Use The Following Card Details</h3>
+                <p>Card Number: 4242 4242 4242 4242</p>
+                <p>Expiry Date: 01/30</p>
+                <p>CVC: 123</p>
+            </div>
             
         </div>
     )

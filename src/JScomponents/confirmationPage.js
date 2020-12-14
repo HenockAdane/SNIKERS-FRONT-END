@@ -32,7 +32,7 @@ function ConfirmationPage() {
 
     const formSubmit = (e) => {
         e.preventDefault()
-        fetch(`${process.env.REACT_APP_API}/confirmation`, {
+        fetch(`${process.env.REACT_APP_API}confirmation`, {
             method: "POST",
             mode:"cors",
             headers: {
