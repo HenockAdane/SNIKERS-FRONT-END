@@ -135,7 +135,7 @@ function ContactPage() {
                         <p>{state.message.length}/300</p>
 
 
-                    <input type="submit" value="Send Message"/>
+                    <button type="submit" >SEND MESSAGE</button>
 
                     
 

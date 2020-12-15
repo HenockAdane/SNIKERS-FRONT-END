@@ -1,7 +1,7 @@
 import React from 'react'
 import SignIn from './signIn'
 import SignUp from './signUp'
-import styles from "../CSScomponents/signInOrUp.module.css"
+import styles from "../CSScomponents/signInOrUp.module.scss"
 
 function SignInOrUp() {
     return (

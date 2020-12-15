@@ -1,5 +1,5 @@
 .order{
-    max-width: 100%;
+    width: 100%;
     border: 1px solid red;
     margin: 20px auto;
     color: white;
@@ -21,6 +21,7 @@
         }
 
         .productDetails{
+            max-width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -46,4 +47,40 @@
         }
 
     }
+}
+
+@media (max-width: 768px){
+    
+    .order{    
+        .orderHeader{
+            flex-direction: column;
+            justify-content: unset;
+            text-align: center;
+        }
+    
+        .product{
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid white;
+    
+            .img{
+                width: 100%;
+                border: 5px solid red;
+            }
+    
+            .productDetails{
+                align-items: center;
+        
+                .btnContainer{
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    
+
+    
+
+    
 }

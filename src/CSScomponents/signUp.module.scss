@@ -9,7 +9,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 45%;
+    width: 630px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -18,6 +19,11 @@
     padding: 10px 0;
     margin: 10px 0;
     border: 1px solid;
+
+}
+
+button{
+        // background-color: red;
 
 }
 

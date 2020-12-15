@@ -188,6 +188,12 @@ footer{
     display: none;
     width: 100%;
     flex-direction: column;
+
+    .cartIconContainer{
+      display: none;
+    }
+
+
   }
 
   .nav-links{

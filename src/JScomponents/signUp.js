@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import styles from "../CSScomponents/signOut.module.css"
+import styles from "../CSScomponents/signIn.module.scss"
 
 function SignUp() {
 
@@ -62,7 +62,7 @@ function SignUp() {
             <input className={styles.input} type="email" name="email" placeholder="email" required value={state.email} onChange={valueChange} />
             <input className={styles.input} type="password" name="password" placeholder="password" required value={state.password} onChange={valueChange} />
 
-            <input type="submit" value="Register"></input>
+            <button type="submit">REGISTER</button>
 
         </form>
 

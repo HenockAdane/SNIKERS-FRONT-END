@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {useDispatch } from 'react-redux'
-import styles from "../CSScomponents/signIn.module.css"
+import styles from "../CSScomponents/signIn.module.scss"
 
 import {addUser} from "../ReduxComponents/userReducer"
 
@@ -78,7 +78,7 @@ function SignIn() {
             <input className={styles.input} type="password" name="password" placeholder="password" required value={state.password} onChange={valueChange} />
 
 
-            <input type="submit" value="Log In" />
+            <button type="submit">LOG IN</button>
 
 
         </form>

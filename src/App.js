@@ -35,7 +35,6 @@ function App() {
 
   }))
 
-  console.log(process.env.REACT_APP_API)
 
   const dispatch = useDispatch()
   let currentUser = useSelector(state => state.userReducer.currentUser)

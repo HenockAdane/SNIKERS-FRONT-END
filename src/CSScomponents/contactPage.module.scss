@@ -16,12 +16,14 @@
             justify-content: space-between;
             width: 100%;
 
-            input{
-                display: block;
-                width: 320px;
-                padding: 10px;
-                margin: 10px 0;
-            }
+            
+        }
+
+        input{
+            display: block;
+            width: 320px;
+            padding: 10px;
+            margin: 10px 0;
         }
 
         .services{
@@ -43,6 +45,12 @@
                 }
             }
         }
+
+        button{
+            width: 150px;
+            padding: 10px 0;
+            margin: 10px auto;
+        }
     
     }
 }
@@ -61,10 +69,44 @@ textarea{
 
 
         
-@media (max-width: 800px){
+@media (max-width: 768px){
 
-    input{
-    width: 100%;
-    background-color: green;
+    .contactPage{
+
+        form{
+            .mainInputs{
+                flex-direction: column;
+                
+                input{
+                    width: 100%;
+                    background-color: green;
+                }
+            }
+    
+            .services{
+                input{
+                    width: 45%;
+                }
+            }
+        }
     }
-}       
+    
+}
+
+@media (max-width: 375px){
+
+    .contactPage{
+
+        form{
+            
+    
+            .services{
+                input{
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+    
+}   

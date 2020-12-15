@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+}
+
+.form{
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: 630px;
+    margin: 0 auto;
+
+
+    .input{
+        width: 90%;
+        padding: 10px 0;
+        margin: 10px 0;
+        border: 1px solid;
+    
+    }
+    
+    button{
+        width: 150px;
+        padding: 10px 0;
+        margin: 10px 0;
+        // background-color: black;
+    }
+}
+
+
+
+@media (max-width: 768px){
+}
+
+/* label{
+    border: 1px solid;
+    width: 90%;
+    margin: 10px 0;
+
+    
+} */

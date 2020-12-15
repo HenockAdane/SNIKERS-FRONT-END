@@ -131,7 +131,6 @@
 
 .moreDetailsContainer{
     width: 100%;
-    height: 100vh;
     justify-content: center;
     background-color: white;
     overflow-y: scroll;
@@ -140,8 +139,6 @@
     .moreDetails{
         width: 900px;
         max-width: 100%;
-        background-color: red;
-        height: 100%;
         padding: 0 5%;
         border: 1px solid;
 
@@ -190,7 +187,6 @@
     .Container{
         flex-direction: column;
         flex-wrap: unset;
-        border: 10px solid red;
     }
 
     .imageContainer{
@@ -212,8 +208,8 @@
             border: 1px solid;
         }
 
-        .sizeBtns{
-            border: 1px solid red;
-        }
+        // .sizeBtns{
+        //     border: 1px solid red;
+        // }
     }
 }
