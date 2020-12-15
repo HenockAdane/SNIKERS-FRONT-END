@@ -35,6 +35,8 @@ function App() {
 
   }))
 
+  console.log(REACT_APP_API)
+
   const dispatch = useDispatch()
   let currentUser = useSelector(state => state.userReducer.currentUser)
   let cartItems = useSelector(state => state.cartItemReducer.cartItems)
