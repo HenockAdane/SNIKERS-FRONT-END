@@ -191,7 +191,6 @@ function App() {
       
     </header>
 
-    {state.currentUser ? (<h1>{state.currentUser.username}</h1>) : (<h1>No User</h1>)}
 <div style={{minHeight: "55vh", padding: "0 10px"}}>
     {/* <h1>{state.user ? "User is in" : "no user"}</h1> */}
 

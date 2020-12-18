@@ -72,7 +72,6 @@ function SignIn() {
     return (
         <div>
         {/* {state.data && state.data.confirmed ? <Redirect to="/" />: state.date === null ? false : <Redirect to="/confirmation"/>} */}
-        {state.email}
         <h1>SIGN IN</h1>
 
         <form className={styles.form} onSubmit={formSubmit}>
