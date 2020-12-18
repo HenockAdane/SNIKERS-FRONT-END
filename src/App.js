@@ -63,7 +63,8 @@ function App() {
       else{
         setState(ps=> ({
           ...ps,
-          ulStyle: "none"
+          ulStyle: "none",
+          cartDisplay: "none"
         }))
       }
     })
@@ -191,11 +192,9 @@ function App() {
     </header>
 
     {state.currentUser ? (<h1>{state.currentUser.username}</h1>) : (<h1>No User</h1>)}
-
+<div style={{minHeight: "55vh", padding: "0 10px"}}>
     {/* <h1>{state.user ? "User is in" : "no user"}</h1> */}
-    <h1>{`
-    THINGS TO DO
-    1) Account Settings API route`}</h1>
+
 
 
     <Switch>
@@ -241,8 +240,14 @@ function App() {
         
 
         <Route exact path="/confirmation" render={()=>(
-          state.currentUser && state.currentUser.confirmed ? (<Redirect to="/" />) : !state.currentUser ? (<Redirect to="/" />) : (<ConfirmationPage />)
+          state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/profile" />) : state.currentUser ?  (<ConfirmationPage />) : (<Redirect to="/" />)
         )}
+        />
+
+
+
+<Route exact={false} path="/member" render={()=>(
+                state.currentUser && state.currentUser.confirmed ? (<MembersPage />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<Redirect to="/signInOrUp" />) )}
         />
 
         
@@ -277,15 +282,18 @@ function App() {
 state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/settings" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignInOrUp />)}
         />
 
+
+
 <Route exact={true} path="/checkOut" render={()=>(
                 <CheckOut />  )}
         />
 
-<Route exact={false} path="/member" render={()=>(
-                state.currentUser && state.currentUser.confirmed ? (<MembersPage />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<Redirect to="/signInOrUp" />) )}
-        />
+
+
+        
 
     </Switch>
+    </div>
 
 
     <footer>

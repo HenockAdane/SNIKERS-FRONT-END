@@ -3,7 +3,7 @@ import styles from "../CSScomponents/profile.module.scss"
 
 function Profile(props) {
     return (
-        <div>
+        <div className={styles.Profile}>
 
         <div className={styles.intro}>
             <div className={styles.profileImg}></div>

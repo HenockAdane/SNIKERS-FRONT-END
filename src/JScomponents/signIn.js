@@ -8,8 +8,8 @@ function SignIn() {
 
 
     const [state, setState] = useState(()=>({
-        email: "cpxgxqqeybgdvlzzbp@mhzayt.online",
-        password: "cpxgxqqeybgdvlzzbp@mhzayt.online",
+        email: "xlnsqbpuqukxakrdcg@kiabws.com",
+        password: "xlnsqbpuqukxakrdcg@kiabws.com",
         data: {}
     }))
 
@@ -50,7 +50,13 @@ function SignIn() {
             setState(ps => ({...ps, email:"", password: "", data: data}))
             
 
-            dispatch(addUser(data))
+            if (data.user){
+                dispatch(addUser(data.user))
+            }
+
+            alert(data.message)
+
+
             
 
             console.log(data.confirmed)

@@ -28,15 +28,27 @@ function StripeBtn(props) {
                 newOrder: {
                 orderDate: new Date(),
                 products: props.cartItems,
-                totalPrice: props.cartItemsTotalPrice,
-                dispatchTo: `${currentUser.firstName} ${currentUser.lastName}`    
+                totalPrice: props.cartItemsTotalPrice,    
                 }
             })
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+            if (res.status === 200){
+               return res.json()
+            }
+
+            else{
+                alert("There Has Been An Error With This Payment")
+                throw new Error(res.status)
+            }
+        }).then(data => {
+            console.log(data)
             alert("Payment Successful")
 
-            dispatch(clearCartItems())
-            dispatch(addUser(data.doc))
+                dispatch(clearCartItems())
+                dispatch(addUser(data.user))
+
+
+            
 
         }).catch(err => console.log("payment error:" + err))
     }

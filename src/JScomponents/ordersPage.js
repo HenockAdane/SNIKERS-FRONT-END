@@ -62,7 +62,7 @@ function OrdersPage() {
 
 
                 
-            </div>)) : false}
+            </div>)) : <h1 style={{textAlign: "center"}}>No Orders Yet</h1>}
 
 
             

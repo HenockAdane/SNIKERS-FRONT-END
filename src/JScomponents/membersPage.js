@@ -31,7 +31,7 @@ function MembersPage() {
         <Switch>
 
         <Route exact={true} path="/member/profile" render={()=>(
-          <Profile name={`${currentUser.firstName} ${currentUser.lastName}`} createdAt="Jun 21st 2020"/>
+          <Profile name={`${currentUser.firstName} ${currentUser.lastName}`} createdAt={currentUser.createdAt}/>
         )}
         />
 

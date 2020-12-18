@@ -1,12 +1,14 @@
+.Profile{
+    width: 100%;
+}
+
 .intro{
     display: flex;
-    border: 1px solid black;
 
     .profileImg{
         width: 96px;
         height: 96px;
         background-color: #E5E5E5;
-        border: 1px solid red;
         border-radius: 50%;
 
     }
@@ -15,16 +17,16 @@
 
 .benefitsContainer{
     display: flex;
-    border: 1px solid green;
     width: 100%;
     justify-content: space-between;
     overflow-x: scroll;
 
 
     .benefits{
-        border: 1px solid purple;
+        border: 1px solid black;
+
         flex-shrink: 0;
-        width: 298px;
+        width: 300px;
         margin: 10px 0;
         height: 283.77px;
 

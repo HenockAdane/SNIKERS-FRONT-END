@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {addUser} from "../ReduxComponents/userReducer"
-  
+import styles from "../CSScomponents/confirmationPage.module.scss"
 
 
 
@@ -14,7 +14,7 @@ function ConfirmationPage() {
 
 
     const [state, setState] = useState(() => ({
-        attemptedConfirmation: ""
+        attemptedConfirmationCode: ""
     }))
 
     const inputChange = (e) => {
@@ -38,15 +38,25 @@ function ConfirmationPage() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({currentUser: currentUser, attemptedConfirmation: state.attemptedConfirmation})
+            body: JSON.stringify({currentUser: currentUser, attemptedConfirmationCode: state.attemptedConfirmationCode, attemptedDate: new Date().getTime()})
         }).then(res => res.json()).then(data => {
 
-            data.confirmed ? dispatch(addUser(data)) : alert("code is wrong, please try again")
+            if (data.user && data.user.confirmed){
+                alert(data.message)
+                dispatch(addUser(data.user))
+            }
+
+            else{
+                console.log(data)
+                alert(data.message)
+            }
+
 
         })
     }
 
     const resendCode = (e) => {
+        console.log("resend clicked")
         e.preventDefault()
         fetch(`${process.env.REACT_APP_API}resendConfirmationCode`, {
             method: "POST",
@@ -56,23 +66,29 @@ function ConfirmationPage() {
             },
             body: JSON.stringify(currentUser)
         }).then(res => res.json()).then(data => {
-            console.log(data.confirmed)
-            dispatch(addUser(data))
+            alert(data.message)
 
         })
     }
 
     return (
-        <div>
+        <div className={styles.confirmationPage}>
 
 
-        <form onSubmit={formSubmit}>
-            <input type="text" name="attemptedConfirmation" required onChange={inputChange} value={state.attemptedConfirmation} placeholder="Enter Confirmation Code" />
-            <input type="submit" name="submitBtn" value="Confirm" />
-        </form>
+        
 
-            <input type="submit" name="resendCodeBtn" value="Resend Code" onClick={resendCode}/>
-            
+
+        <div className={styles.formContainer}>
+
+            <h1>Thank You For Creating An Account</h1>
+            <p>We Have Sent The Confirmation Code To The Email: {currentUser.email}</p>
+            <form className={styles.form} onSubmit={formSubmit}>
+                <input type="text" name="attemptedConfirmationCode" required onChange={inputChange} value={state.attemptedConfirmationCode} placeholder="Enter Confirmation Code" />
+                <input className={styles.submitBtn} type="submit" name="submitBtn" value="Confirm" />
+            </form>
+
+                <button className={styles.resendBtn} onClick={resendCode}>RESEND CODE</button>
+        </div>
         </div>
     )
 }

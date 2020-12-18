@@ -1,0 +1,44 @@
+.confirmationPage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .formContainer{
+        border: 1px solid red;
+        width: 400px;
+        max-width: 100%;
+        margin: 50px 0 0 0;
+
+        
+
+    }
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    
+    input{
+        padding: 10px 0;
+        border: 1px solid green;
+    }
+
+    .submitBtn{
+        margin: 20px 0 0 0;
+        width: 150px;
+        align-self: center;
+        cursor: pointer;
+    }
+}
+
+.resendBtn{
+    border: 1px solid;
+    display: block;
+    width: 150px;
+    padding: 10px 0;
+    margin: 0 auto;
+    cursor: pointer;;
+}

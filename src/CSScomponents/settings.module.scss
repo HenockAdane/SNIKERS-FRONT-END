@@ -1,24 +1,32 @@
+.connt{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .form{
     width: 500px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
 
     input{
         padding: 10px 0;
         margin: 10px 0;
     }
+
 }
 
 .delete{
+    width: 500px;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     
     button{
         padding: 10px 0;
-        margin: 0 10px;
-        width: 45%;
+        width: 100%;
         cursor: pointer;
     }
 

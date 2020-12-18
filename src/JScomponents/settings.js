@@ -99,7 +99,7 @@ function Settings() {
 
 
     return (
-        <div>
+        <div className={styles.connt}>
 
         <form className={styles.form} onSubmit={updateAccount}>
 
@@ -114,7 +114,7 @@ function Settings() {
             <li><em>Contain At Least 1 Number</em></li>
             <li><em>Be Different From Your Email</em></li>
 
-            <input type="submit" value="Save" />
+            <input className={styles.submitBtn} type="submit" value="Save" />
 
         </form>
 
