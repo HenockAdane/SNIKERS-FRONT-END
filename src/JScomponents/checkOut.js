@@ -25,25 +25,7 @@ function CheckOut() {
         <div className={styles.checkoutContainer}>
            
 
-            {/* {cartItems.map(item => (
-                <div className={styles.checkoutItems}>
-                    <img className={styles.itemTitles} src={item.frontImg} alt="Product"/>
-                    <p className={styles.itemTitles}>{item.title}  
-                    <br/> Size: {item.size}
-                    </p>
-                    <div className={styles.itemTitles && styles.quantity}>
-
-                        <button onClick={()=>dispatch(reducingFromCartAction(item))}>-</button>
-
-                        <p>{item.quantity}</p>
-
-                        <button onClick={()=>dispatch(addToCartAction(item))}>+</button>
-
-                    </div>
-                    <h4 className={styles.itemTitles}>${item.price}</h4>
-                    <button className={styles.delete} onClick={()=> dispatch(removeFromCartAction(item))}>X</button>
-                </div>
-            ))} */}
+            
 
             {cartItems.map(product => (
                 <div className={styles.product}>
