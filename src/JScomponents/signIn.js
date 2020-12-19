@@ -70,7 +70,7 @@ function SignIn() {
     }
 
     return (
-        <div>
+        <div className={styles.container}>
         {/* {state.data && state.data.confirmed ? <Redirect to="/" />: state.date === null ? false : <Redirect to="/confirmation"/>} */}
         <h1>SIGN IN</h1>
 

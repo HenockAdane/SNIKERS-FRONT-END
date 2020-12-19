@@ -22,9 +22,9 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: white;
+  background-color: #f5f5f5;
   z-index: 10;
   padding: 0 10px;
 }
@@ -55,7 +55,7 @@ body{
 
 .nav-links{
   color: black;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .cartIconContainer{
@@ -202,7 +202,7 @@ footer{
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    border: 1px solid red;
+    border-bottom: 1px solid;
   }
 
   footer{
