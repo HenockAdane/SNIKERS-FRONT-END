@@ -50,6 +50,17 @@ p{
 
 @media (max-width: 425px){
 
+    .product{
+
+        &:hover{
+
+            img{
+                transform: unset;
+            }
+        }
+
+    }
+
     .imgContainer{
         height: 190px;
     }

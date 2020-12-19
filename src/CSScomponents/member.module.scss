@@ -5,17 +5,22 @@
     align-items: center;
 
     .header{
+        margin: 50px 0 0 0;
         width: 500px;
         max-width: 100%;
-    
+            
         .headerLinks{
+            padding: 5px 0;
             border: 1px solid;
+            text-decoration: none;
             color: black;
             display: inline-block;
             width: 25%;
             text-align: center;
             text-align: center;
         }
+
+        
     }
 
     .benefitsContainer{
@@ -23,6 +28,7 @@
         width: 100%;
         justify-content: space-evenly;
         overflow-x: scroll;
+        margin: 50px 0;
     
     
         .benefits{
@@ -51,6 +57,17 @@
 
 @media (max-width: 912px){
     .membersPage{
+
+        .header{
+            .headerLinks{
+                width: 23%;
+            }
+
+            .bigLink{
+                width: 30%;
+            }
+        }
+
         .benefitsContainer{
             justify-content: space-between;
         }

@@ -1,65 +1,80 @@
 .checkoutContainer{
     width: 700px;
-    max-width: 100%;
+    width: 100%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px auto ;
 
-    .checkoutHeader{
+    .product{
         width: 100%;
-        height: 40px;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid;
-        text-align: center;
+        border: 1px solid black;
 
-
-        .headerTitles{
-            width: 22.5%;
+        .img{
+            width: 18%;
         }
 
-        .small{
-            width: 10%;
-        }
-        
-    }
-
-
-    .checkoutItems{
-        width: 100%;
-        height: 157.5px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-
-
-        .itemTitles{
-            width: 22.5%;
-        }
-
-        .delete{
-            display: block;
-            width: 10%;
-            cursor: pointer;
-        }
-
-        .quantity{
-            width: 22.5%;
+        .productDetails{
+            max-width: 100%;
             display: flex;
-            justify-content: space-evenly;
+            flex-direction: column;
+            justify-content: space-between;
 
-            button{
-                width: 25px;
-                height: 25px;
-                cursor: pointer;
+            .btnContainer{
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                button{
+                    border: 1px solid green;
+                    width: 30px;
+                    font-size: 18px;
+                    padding: 5px 0;
+                    text-align: center;
+                    background-color: black;
+                    color: white;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
             }
         }
 
     }
 
+}
 
+
+@media (max-width: 768px){
+    
+
+    
+        .checkoutContainer{
+
+            .product{
+                flex-direction: column;
+                align-items: center;
+        
+                .img{
+                    width: 100%;
+                }
+        
+                .productDetails{
+                    align-items: center;
+            
+                    .btnContainer{
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    
+
+    
+
+    
 }
 

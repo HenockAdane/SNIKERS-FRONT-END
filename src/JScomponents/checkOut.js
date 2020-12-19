@@ -23,15 +23,9 @@ function CheckOut() {
 
     return (
         <div className={styles.checkoutContainer}>
-            <div className={styles.checkoutHeader}>
-                <p className={styles.headerTitles}>PRODUCT</p>
-                <p className={styles.headerTitles}>DESCRIPTION</p>
-                <p className={styles.headerTitles}>QUANTITY</p>
-                <p className={styles.headerTitles}>PRICE</p>
-                <p className={`${styles.headerTitles} ${styles.small}`}>REMOVE</p>
-            </div>
+           
 
-            {cartItems.map(item => (
+            {/* {cartItems.map(item => (
                 <div className={styles.checkoutItems}>
                     <img className={styles.itemTitles} src={item.frontImg} alt="Product"/>
                     <p className={styles.itemTitles}>{item.title}  
@@ -48,6 +42,28 @@ function CheckOut() {
                     </div>
                     <h4 className={styles.itemTitles}>${item.price}</h4>
                     <button className={styles.delete} onClick={()=> dispatch(removeFromCartAction(item))}>X</button>
+                </div>
+            ))} */}
+
+            {cartItems.map(product => (
+                <div className={styles.product}>
+                    <img className={styles.img} src={product.frontImg} alt="Product" />
+
+                    <div className={styles.productDetails}>
+
+                        <p>Title: {product.title}</p>
+                        <p>Color: {product.color}</p>
+                        <p>For: {product.for}</p>
+                        <div className={styles.btnContainer}>
+                            <button onClick={() => dispatch(addToCartAction(product))}>+</button>
+                            <p>Quantity: {product.quantity}</p>
+                            <button onClick={() => dispatch(reducingFromCartAction(product))}>-</button> 
+                        </div>
+                        <p>Price: £{product.price}</p>
+
+
+                    </div>
+
                 </div>
             ))}
 

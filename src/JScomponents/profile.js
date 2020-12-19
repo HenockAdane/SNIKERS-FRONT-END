@@ -13,7 +13,7 @@ function Profile(props) {
         </div>
 
 
-        <p>Member Benefits</p>
+        <p>Enjoy Your Membership Benefits</p>
             
         </div>
     )

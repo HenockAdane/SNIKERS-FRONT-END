@@ -39,12 +39,11 @@ function MembersPage() {
     }]
     return (
         <div className={styles.membersPage}>
-        <h1>MembersPage</h1>
         <header className={styles.header} >
 
         <Link className={styles.headerLinks} to="/member/profile">Profile</Link>
         <Link className={styles.headerLinks} to="/member/orders">Orders</Link>
-        <Link className={styles.headerLinks} to="/member/favourites">Favourites</Link>
+        <Link className={`${styles.headerLinks} ${styles.bigLink}`} to="/member/favourites">Favourites</Link>
         <Link className={styles.headerLinks} to="/member/settings">Settings</Link>
 
         </header>

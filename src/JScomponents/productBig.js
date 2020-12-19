@@ -93,7 +93,7 @@ function ProductBig(props) {
         }
 
         else{
-            console.log("Need to select size first")
+            alert("You Need to select size first")
         }
     }
 

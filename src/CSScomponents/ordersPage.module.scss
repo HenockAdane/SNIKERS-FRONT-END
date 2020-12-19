@@ -1,9 +1,7 @@
 .order{
     width: 100%;
-    border: 1px solid red;
     margin: 20px auto;
-    color: white;
-    background-color: black;
+    border: 1px solid black;
 
     .orderHeader{
         width: 100%;
@@ -15,7 +13,7 @@
     .product{
         width: 100%;
         display: flex;
-        border: 1px solid green;
+        border-top: 1px solid black;
 
         .img{
             width: 18%;
@@ -32,9 +30,9 @@
                 max-width: 100%;
                 display: flex;
                 justify-content: space-between;
+                margin: 0 0 10px 0;
 
                 .addToCartBtn,.linkBtn{
-                    border: 1px solid green;
                     width: 150px;
                     font-size: 18px;
                     padding: 10px 0;
@@ -66,7 +64,6 @@
     
             .img{
                 width: 100%;
-                border: 5px solid red;
             }
     
             .productDetails{

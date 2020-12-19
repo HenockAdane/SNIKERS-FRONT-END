@@ -114,7 +114,7 @@ function Settings() {
             <li><em>Contain At Least 1 Number</em></li>
             <li><em>Be Different From Your Email</em></li>
 
-            <input className={styles.submitBtn} type="submit" value="Save" />
+            <input style={{cursor: "pointer"}} className={styles.submitBtn} type="submit" value="Save" />
 
         </form>
 

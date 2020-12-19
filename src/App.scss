@@ -50,12 +50,15 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid;
 }
 
 .nav-links{
   color: black;
   text-decoration: none;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .cartIconContainer{
@@ -66,7 +69,10 @@ body{
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 
     .cartIcon{
       width: 30px;
@@ -203,12 +209,28 @@ footer{
     text-align: center;
     padding: 20px 0;
     border-bottom: 1px solid;
+
+    &:hover{
+      transform: unset;
+    }
   }
 
   footer{
     flex-direction: column-reverse;
     align-items: center;
     justify-content: space-evenly;
+
+    a{
+      &:hover{
+        transform: unset;
+      }
+    }
+
+    button{
+      &:hover{
+        transform: unset;
+      }
+    }
 
     .sectionOneContainer{
       flex-direction: column;
@@ -234,7 +256,6 @@ footer{
   height: 45px;
   cursor: pointer;
   transition: all .2s ease-in-out;
-  border: 1px solid;
   z-index: 1;
   }
 
