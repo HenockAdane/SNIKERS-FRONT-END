@@ -191,7 +191,7 @@ function App() {
       
     </header>
 
-<div style={{minHeight: "55vh", padding: "0 10px", margin: "18vh 0 0 0"}}>
+<div style={{minHeight: "65vh", padding: "0 10px", margin: "18vh 0 0 0"}}>
     {/* <h1>{state.user ? "User is in" : "no user"}</h1> */}
 
 
