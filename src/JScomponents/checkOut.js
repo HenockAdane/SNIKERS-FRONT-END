@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from "../CSScomponents/checkOut.module.scss"
-import {addToCartAction, reducingFromCartAction, removeFromCartAction} from "../ReduxComponents/cartReducer"
+import {addToCartAction, reducingFromCartAction} from "../ReduxComponents/cartReducer"
 import StripeBtn from './stripeBtn'
 
 function CheckOut() {
