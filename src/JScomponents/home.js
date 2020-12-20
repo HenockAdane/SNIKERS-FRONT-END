@@ -31,17 +31,23 @@ function Home() {
         {/* <img src="/images/home/allShoes.jpg" /> */}
         <div className={styles.optionsOneDiv}>
 
-            <Link to={"/shop/all/featured"} className={`${styles.options} ${styles.allFeatured}`} style={{backgroundImage: "url(/images/home/allFeatured.jpg)"}}>
+        <div className={styles.allFeatured}>
+            <Link to={"/shop/all/featured"} className={styles.options} style={{backgroundImage: "url(/images/home/allFeatured.jpg)"}}>
                 <p>All Featured</p>
             </Link>
+        </div>
 
-            <Link to={"/shop/all/shoes"} className={`${styles.options} ${styles.allShoes}`} style={{backgroundImage: "url(/images/home/allShoes.jpg)"}}>
+        <div className={styles.allShoes}>
+            <Link to={"/shop/all/shoes"} className={styles.options} style={{backgroundImage: "url(/images/home/allShoes.jpg)"}}>
                 <p>All Shoes</p>
             </Link>
+        </div>
 
-            <Link to={"/shop/all/clothing"} className={`${styles.options} ${styles.allClothing}`} style={{backgroundImage: "url(/images/home/allClothing.jpg)"}}>
+        <div className={styles.allClothing}>
+            <Link to={"/shop/all/clothing"} className={styles.options} style={{backgroundImage: "url(/images/home/allClothing.jpg)"}}>
                 <p>All Clothing</p>
             </Link>
+        </div>
 
 
         </div>
@@ -52,17 +58,24 @@ function Home() {
 
         <div className={styles.optionsTwoDiv}>
 
-            <Link to={"/shop/mens"} className={styles.options} style={{backgroundImage: "url(/images/home/Mens.jpg)"}}>
-                <p>Men's</p>
-            </Link>
 
-            <Link to={"/shop/kids"} className={styles.options} style={{backgroundImage: "url(/images/home/Kids.jpg)"}}>
-                <p>Kid's</p>
-            </Link>
+            <div>
+                <Link to={"/shop/mens"} className={styles.options} style={{backgroundImage: "url(/images/home/Mens.jpg)"}}>
+                    <p>Men's</p>
+                </Link>
+            </div>
 
-            <Link to={"/shop/womens"} className={styles.options} style={{backgroundImage: "url(/images/home/Womens.jpg)"}}>
-                <p>Women's</p>
-            </Link>
+            <div>
+                <Link to={"/shop/kids"} className={styles.options} style={{backgroundImage: "url(/images/home/Kids.jpg)"}}>
+                    <p>Kid's</p>
+                </Link>
+            </div>
+
+            <div>
+                <Link to={"/shop/womens"} className={styles.options} style={{backgroundImage: "url(/images/home/Womens.jpg)"}}>
+                    <p>Women's</p>
+                </Link>
+            </div>
 
 
         </div>

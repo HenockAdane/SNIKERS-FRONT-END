@@ -22,6 +22,12 @@
         color: black;
         text-decoration: none;
         background-size: cover;
+        transition: 0.5s all ease-in-out;
+        height: 100%;
+
+        &:hover{
+            transform: scale(1.06);
+        }
     }
     
     .options p{
@@ -31,6 +37,10 @@
         color: black;
         border: 1px solid black;
         margin: 0 0 10px 0;
+    }
+
+    div{
+        overflow: hidden;
     }
 
     .allFeatured{
@@ -55,10 +65,14 @@
     flex-wrap: wrap;
     margin: 10% auto 0 auto;
 
+    div{
+        overflow: hidden;
+        width: 32%;
+        // max-width: 100%;
+        // min-width: 32%;
+    }
+
     .options{
-        width: 320px;
-        max-width: 100%;
-        min-width: 32%;
         min-height: 350px;
         // min-height: 412px;
         background-repeat: no-repeat;
@@ -69,6 +83,11 @@
         color: black;
         text-decoration: none;
         background-size: cover;
+        transition: 0.5s all ease-in-out;
+
+        &:hover{
+            transform: scale(1.06);
+        }
     }
     
     .options p{
@@ -91,9 +110,11 @@
     .optionsTwoDiv{
         flex-direction: column;
 
-        .options{
+        div{
             min-width: 75%;
             margin: 10% 0;
+
+
         }
     }
 }
