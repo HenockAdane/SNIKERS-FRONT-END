@@ -105,6 +105,12 @@
         grid-template-areas:
         "featured featured"
         "shoe clothing";
+        
+        .options{
+            &:hover{
+                transform: unset;
+            }
+        }
     }
 
     .optionsTwoDiv{
@@ -113,8 +119,12 @@
         div{
             min-width: 75%;
             margin: 10% 0;
+        }
 
-
+        .options{
+            &:hover{
+                transform: unset;
+            }
         }
     }
 }
