@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import styles from "../CSScomponents/mens.module.scss"
 import ItemDiv from './itemDiv';
+import Loader from './loading';
+
 
 
 function MensPage() {
 
     const [state, setstate] = useState(()=> ({
-        products: []
+        products: [],
+        loading: true
     }))
 
     useEffect(()=> {
@@ -14,7 +17,8 @@ function MensPage() {
             console.log(data)
             setstate(ps => ({
                 ...ps,
-                products: data
+                products: data,
+                loading: false
             }))
         })
     }, [])
@@ -22,11 +26,15 @@ function MensPage() {
     
 
     return (
+        <div>
+        
+        {state.loading ? (<Loader fullScreen={false} />) : false}
+
         <div className={styles.container}>
 
-        
-
         {state.products.map(product => <ItemDiv id={product._id} frontImg={product.images[0]} title={product.title} for={product.for} type={product.type} color={product.color[1]} price={product.price} /> )}
+
+        </div>
         
             
                 

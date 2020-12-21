@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {addUser} from "../ReduxComponents/userReducer"
 import styles from "../CSScomponents/confirmationPage.module.scss"
+import Loader from './loading';
+
 
 
 
@@ -14,7 +16,8 @@ function ConfirmationPage() {
 
 
     const [state, setState] = useState(() => ({
-        attemptedConfirmationCode: ""
+        attemptedConfirmationCode: "",
+        loading: false
     }))
 
     const inputChange = (e) => {
@@ -32,6 +35,12 @@ function ConfirmationPage() {
 
     const formSubmit = (e) => {
         e.preventDefault()
+
+        setState(ps => ({
+            ...ps,
+            loading: true
+        }))
+
         fetch(`${process.env.REACT_APP_API}confirmation`, {
             method: "POST",
             mode:"cors",
@@ -40,6 +49,11 @@ function ConfirmationPage() {
             },
             body: JSON.stringify({currentUser: currentUser, attemptedConfirmationCode: state.attemptedConfirmationCode, attemptedDate: new Date().getTime()})
         }).then(res => res.json()).then(data => {
+
+            setState(ps => ({
+                ...ps,
+                loading: false
+            }))
 
             if (data.user && data.user.confirmed){
                 alert(data.message)
@@ -58,6 +72,12 @@ function ConfirmationPage() {
     const resendCode = (e) => {
         console.log("resend clicked")
         e.preventDefault()
+
+        setState(ps => ({
+            ...ps,
+            loading: true
+        }))
+
         fetch(`${process.env.REACT_APP_API}resendConfirmationCode`, {
             method: "POST",
             mode:"cors",
@@ -66,6 +86,11 @@ function ConfirmationPage() {
             },
             body: JSON.stringify(currentUser)
         }).then(res => res.json()).then(data => {
+
+            setState(ps => ({
+                ...ps,
+                loading: false
+            }))
             alert(data.message)
 
         })
@@ -74,6 +99,8 @@ function ConfirmationPage() {
     return (
         <div className={styles.confirmationPage}>
 
+        {state.loading ? <Loader fullScreen={true} /> : false}
+
 
         
 
@@ -81,7 +108,7 @@ function ConfirmationPage() {
         <div className={styles.formContainer}>
 
             <h1>Thank You For Creating An Account</h1>
-            <p>We Have Sent The Confirmation Code To The Email: {currentUser.email}</p>
+            <p>To Fully Use This Account, Please Confirm The Confirmation Code Sent To The Email: {currentUser.email}</p>
             <form className={styles.form} onSubmit={formSubmit}>
                 <input type="text" name="attemptedConfirmationCode" required onChange={inputChange} value={state.attemptedConfirmationCode} placeholder="Enter Confirmation Code" />
                 <input className={styles.submitBtn} type="submit" name="submitBtn" value="Confirm" />

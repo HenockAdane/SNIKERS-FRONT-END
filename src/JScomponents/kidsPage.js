@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import styles from "../CSScomponents/kids.module.scss"
 import ItemDiv from './itemDiv';
+import Loader from './loading';
+
 
 
 function KidsPage() {
 
     const [state, setstate] = useState(()=> ({
-        products: []
+        products: [],
+        loading: true
     }))
 
     useEffect(()=> {
@@ -15,7 +18,8 @@ function KidsPage() {
             let kids = data.filter(item => item.for.toLowerCase().includes("kid"))
             setstate(ps => ({
                 ...ps,
-                products: kids
+                products: kids,
+                loading: false
             }))
         })
     }, [])
@@ -23,10 +27,15 @@ function KidsPage() {
     
 
     return (
+        <div>
+        
+        {state.loading ? (<Loader fullScreen={false} />) : false}
+
         <div className={styles.container}>
 
-        
         {state.products.map(product => <ItemDiv id={product._id} frontImg={product.images[0]} title={product.title} for={product.for} type={product.type} color={product.color[1]} price={product.price} /> )}
+
+        </div>
         
             
                 

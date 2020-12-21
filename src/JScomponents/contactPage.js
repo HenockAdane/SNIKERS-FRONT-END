@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from "../CSScomponents/contactPage.module.scss"
+import Loader from './loading';
 
 function ContactPage() {
 
@@ -11,7 +12,8 @@ function ContactPage() {
         message: "",
         messageResize: "100px",
         services: [{name: "Lorem", color: "unset"},{name: "Ipsum", color: "unset"},{name: "Dolor", color: "unset"},{name: "Other", color: "unset"}],
-        selectedService: null
+        selectedService: null,
+        loading: false
     }))
 
     const inputChange = (e) => {
@@ -80,6 +82,11 @@ function ContactPage() {
         
     const formSubmit = (e) => {
         e.preventDefault()
+
+        setState(ps => ({
+            ...ps, 
+            loading: true
+        }))
         fetch(`${process.env.REACT_APP_API}contact-us`, {
             method: "POST",
             mode:"cors",
@@ -95,17 +102,17 @@ function ContactPage() {
                 message: state.message
             })
         }).then(res => {
-            return res
-            // setState(ps => ({
-            //     ...ps,
-            //     firstName: "",
-            //     lastName: "",
-            //     email: "",
-            //     phone: "",
-            //     message: "",
-            //     services: [{name: "Lorem", color: "unset"},{name: "Ipsum", color: "unset"},{name: "Dolor", color: "unset"},{name: "Other", color: "unset"}],
-            //     selectedService: null
-            // }))
+            setState(ps => ({
+                ...ps,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                message: "",
+                services: [{name: "Lorem", color: "unset"},{name: "Ipsum", color: "unset"},{name: "Dolor", color: "unset"},{name: "Other", color: "unset"}],
+                selectedService: null,
+                loading: false
+            }))
         })
     }
 
@@ -113,12 +120,14 @@ function ContactPage() {
     return (
         <div className={styles.contactPage}>
 
+        {state.loading ? <Loader fullScreen={true} /> : false}
+
             <form onSubmit={formSubmit}>
 
                     <div className={styles.mainInputs}>
 
-                        <input type="text" name="firstName" placeholder="First Name" required onChange={inputChange} value={state.fullName} />
-                        <input type="text" name="lastName" placeholder="Last Name" required onChange={inputChange} value={state.fullName} />
+                        <input type="text" name="firstName" placeholder="First Name" required onChange={inputChange} value={state.firstName} />
+                        <input type="text" name="lastName" placeholder="Last Name" required onChange={inputChange} value={state.lastName} />
                         <input type="email" name="email" placeholder="Email" required onChange={inputChange}  value={state.email} />
                         <input type="tel" name="phone" placeholder="+44 079 8765 4321 (optional)" onChange={inputChange}  value={state.phone}  />
                     </div>

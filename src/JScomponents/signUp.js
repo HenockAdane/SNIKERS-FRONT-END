@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import {useDispatch} from "react-redux"
 import {addUser} from "../ReduxComponents/userReducer"
 import styles from "../CSScomponents/signIn.module.scss"
+import Loader from "./loading"
 
 function SignUp() {
 
@@ -12,7 +13,8 @@ function SignUp() {
         lastName: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        loading: false
       }))
 
 
@@ -29,6 +31,12 @@ function SignUp() {
 
 
             if (state.password === state.confirmPassword){
+
+                setState(ps => ({
+                    ...ps,
+                    loading: true
+                }))
+
                 fetch(`${process.env.REACT_APP_API}signUp`, {
                     method: "POST",
                     mode: "cors",
@@ -43,6 +51,8 @@ function SignUp() {
                     })
                 }).then(res => res.json()).then(data => {
                     console.log(data)
+
+                    
         
                     if (data.user){
 
@@ -51,7 +61,7 @@ function SignUp() {
                     }
                     alert(data.message)
         
-                    setState(ps => ({...ps, firstName: "", lastName:"", email:"", password: "", confirmPassword: ""}))
+                    setState(ps => ({...ps, firstName: "", lastName:"", email:"", password: "", confirmPassword: "", loading: false}))
                     console.log(state)
         
         
@@ -78,6 +88,8 @@ function SignUp() {
       
     return (
         <div className={styles.container}>
+
+        {state.loading ? <Loader fullScreen={true} /> : false}
 
         <h1>SIGN UP</h1>
 

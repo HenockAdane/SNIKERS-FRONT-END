@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from "../CSScomponents/settings.module.scss"
 import { useSelector, useDispatch } from 'react-redux'
 import { addUser } from '../ReduxComponents/userReducer'
+import Loader from './loading'
 
 function Settings() {
 
@@ -13,7 +14,8 @@ function Settings() {
         currentPassword: "",
         newPassword: "",
         confirmNewPassword: "",
-        modalDisplay: ["none", "unset"]
+        modalDisplay: ["none", "unset"],
+        loading: false
     }))
 
     const deleteModalClose = () => {
@@ -42,6 +44,11 @@ function Settings() {
         e.preventDefault()
         if (state.newPassword.length >= 8 && state.newPassword === state.confirmNewPassword){
 
+            setState(ps => ({
+                ...ps,
+                loading: true
+            }))
+
             fetch(`${process.env.REACT_APP_API}settings`, {
                 method: "PUT",
                 mode: "cors",
@@ -56,6 +63,13 @@ function Settings() {
             }).then(res => res.json()).then(data => {
                 console.log(data)
                 dispatch(addUser(data))
+                setState(ps => ({
+                    ...ps,
+                    currentPassword: "",
+                    newPassword: "",
+                    confirmNewPassword: "",
+                    loading: false
+                }))
                 alert("ACCOUNT UPDATED")
             }).catch(err => console.log(err))
 
@@ -68,6 +82,11 @@ function Settings() {
 
     const deleteAccount = () => {
 
+        setState(ps => ({
+            ...ps,
+            loading: true
+        }))
+
         fetch(`${process.env.REACT_APP_API}deleteAccount`, {
             method: "DELETE",
             mode: "cors",
@@ -76,6 +95,12 @@ function Settings() {
             },
             body: JSON.stringify(currentUser)
         }).then(res => res.json()).then(data => {
+
+            setState(ps => ({
+                ...ps,
+                loading: false
+            }))
+
             if (data.status === 200){
                 dispatch(addUser(data.currentUser))
             }
@@ -100,6 +125,8 @@ function Settings() {
 
     return (
         <div className={styles.connt}>
+
+        {state.loading ? <Loader fullScreen={true} /> : false}
 
         <form className={styles.form} onSubmit={updateAccount}>
 

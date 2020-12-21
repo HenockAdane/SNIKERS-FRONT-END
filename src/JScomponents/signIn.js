@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import {useDispatch } from 'react-redux'
 import styles from "../CSScomponents/signIn.module.scss"
+import Loader from "./loading"
+
 
 import {addUser} from "../ReduxComponents/userReducer"
 
@@ -23,7 +25,8 @@ function SignIn() {
 
         setState(ps => ({
             ...ps,
-            [name] : value
+            [name] : value,
+            loading: false
         }))
 
         console.log(state.email, state.password)
@@ -34,6 +37,11 @@ function SignIn() {
     const formSubmit = (e) => {
 
         e.preventDefault()
+
+        setState(ps => ({
+            ...ps,
+            loading: true
+        }))
 
 
         fetch(`${process.env.REACT_APP_API}signIn`, {
@@ -47,7 +55,7 @@ function SignIn() {
                 password: state.password
             })
         }).then(res => res.json()).then(data => {
-            setState(ps => ({...ps, email:"", password: "", data: data}))
+            setState(ps => ({...ps, email:"", password: "", data: data, loading: false}))
             
 
             if (data.user){
@@ -71,6 +79,8 @@ function SignIn() {
 
     return (
         <div className={styles.container}>
+
+        {state.loading ? <Loader fullScreen={true} /> : false}
         {/* {state.data && state.data.confirmed ? <Redirect to="/" />: state.date === null ? false : <Redirect to="/confirmation"/>} */}
         <h1>SIGN IN</h1>
 
