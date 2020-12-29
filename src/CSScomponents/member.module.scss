@@ -1,7 +1,9 @@
 .membersPage{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 
     .header{
@@ -27,12 +29,10 @@
         display: flex;
         width: 100%;
         justify-content: space-evenly;
-        overflow-x: scroll;
         margin: 50px 0;
     
     
         .benefits{
-            border: 1px solid black;
             color: black;
             text-decoration: none;
     
@@ -48,14 +48,13 @@
     
             p{
                 font-size: 18px;
-                margin: 20px 0;
             }
         }
     }
     
 }
 
-@media (max-width: 912px){
+@media (max-width: 922px){
     .membersPage{
 
         .header{
@@ -70,6 +69,8 @@
 
         .benefitsContainer{
             justify-content: space-between;
+            overflow-x: scroll;
+
         }
     }
 }

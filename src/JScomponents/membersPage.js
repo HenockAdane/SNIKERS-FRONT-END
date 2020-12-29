@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   Link,
+  Redirect,
 } from "react-router-dom";
 import Favourites from './favourites';
 import OrdersPage from './ordersPage';
@@ -38,61 +39,61 @@ function MembersPage() {
       description: "Nike deals don't happen often, but when they do, Nike Members get more. We'll let you know about our special promos—like on your birthday and other key events throughout the year."
     }]
     return (
-        <div className={styles.membersPage}>
-        <header className={styles.header} >
-
-        <Link className={styles.headerLinks} to="/member/profile">Profile</Link>
-        <Link className={styles.headerLinks} to="/member/orders">Orders</Link>
-        <Link className={`${styles.headerLinks} ${styles.bigLink}`} to="/member/favourites">Favourites</Link>
-        <Link className={styles.headerLinks} to="/member/settings">Settings</Link>
-
-        </header>
-
-
-
-        <Switch>
-
-        <Route exact={true} path="/member/profile" render={()=>(
-          <Profile name={`${currentUser.firstName} ${currentUser.lastName}`}/>
-        )}
-        />
-
-        <Route exact path="/member/favourites" render={()=> (
-          <Favourites />
-        )}
-        />
-
-        <Route exact path="/member/orders" render={()=> (
-         currentUser.orders.length > 0 ? (<OrdersPage />) : false
-        )}
-        />
-
-        <Route exact path="/member/settings" render={()=> (
-         <Settings />
-        )}
-        />
-
-        {benefits.map(benefit => 
-        (<Route exact path={`/member/benefits/${benefit.title}`} render={()=> (
-          <BenefitsBig img={benefit.imgBig} title={benefit.title} description={benefit.description} alt={benefit.alt} />
-        )} />
-        )
-        )}
-
-
-        </Switch>
-
-        <div className={styles.benefitsContainer}>
-
-        {benefits.map(benefit => (<Link to={`/member/benefits/${benefit.title}`} className={styles.benefits}>
-          <img className={styles.benefitsImg} src={benefit.img} alt={benefit.alt}
+        currentUser ? (<div className={styles.membersPage}>
+          <header className={styles.header} >
+  
+          <Link className={styles.headerLinks} to="/member/profile">Profile</Link>
+          <Link className={styles.headerLinks} to="/member/orders">Orders</Link>
+          <Link className={`${styles.headerLinks} ${styles.bigLink}`} to="/member/favourites">Favourites</Link>
+          <Link className={styles.headerLinks} to="/member/settings">Settings</Link>
+  
+          </header>
+  
+  
+  
+          <Switch>
+  
+          <Route exact={true} path="/member/profile" render={()=>(
+            <Profile name={`${currentUser.firstName} ${currentUser.lastName}`}/>
+          )}
           />
-          <p>{benefit.title}</p>
-          </Link>))}
-
-        </div>
-            
-        </div>
+  
+          <Route exact path="/member/favourites" render={()=> (
+            <Favourites />
+          )}
+          />
+  
+          <Route exact path="/member/orders" render={()=> (
+           currentUser.orders.length > 0 ? (<OrdersPage />) : false
+          )}
+          />
+  
+          <Route exact path="/member/settings" render={()=> (
+           <Settings />
+          )}
+          />
+  
+          {benefits.map(benefit => 
+          (<Route exact path={`/member/benefits/${benefit.title}`} render={()=> (
+            <BenefitsBig img={benefit.imgBig} title={benefit.title} description={benefit.description} alt={benefit.alt} />
+          )} />
+          )
+          )}
+  
+  
+          </Switch>
+  
+          <div className={styles.benefitsContainer}>
+  
+          {benefits.map(benefit => (<Link to={`/member/benefits/${benefit.title}`} className={styles.benefits}>
+            <img className={styles.benefitsImg} src={benefit.img} alt={benefit.alt}
+            />
+            <p>{benefit.title}</p>
+            </Link>))}
+  
+          </div>
+              
+          </div>) : (<Redirect to="/" />)
     )
 }
 

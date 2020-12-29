@@ -14,7 +14,8 @@ function SignUp() {
         email: "",
         password: "",
         confirmPassword: "",
-        loading: false
+        loading: false,
+        rulesColor: ["black","black","black","black","black"]
       }))
 
 
@@ -59,7 +60,6 @@ function SignUp() {
                         dispatch(addUser(data.user))
                         
                     }
-                    alert(data.message)
         
                     setState(ps => ({...ps, firstName: "", lastName:"", email:"", password: "", confirmPassword: "", loading: false}))
                     console.log(state)
@@ -91,23 +91,30 @@ function SignUp() {
 
         {state.loading ? <Loader fullScreen={true} /> : false}
 
-        <h1>SIGN UP</h1>
 
+        <h1>SIGN UP</h1>
         <form className={styles.form} onSubmit={submit}>
 
-            <input className={styles.input} type="text" name="firstName" placeholder="firstName" required value={state.firstName} onChange={valueChange} />
+            <input className={styles.input} type="text" name="firstName" placeholder="firstName" required value={state.firstName} onChange={valueChange} />                     
             <input className={styles.input} type="text" name="lastName" placeholder="lastName" required value={state.lastName} onChange={valueChange} />
             <input className={styles.input} type="email" name="email" placeholder="email" required value={state.email} onChange={valueChange} />
             <input className={styles.input} type="password" name="password" placeholder="password" required value={state.password} onChange={valueChange} />
             <input className={styles.input} type="password" name="confirmPassword" placeholder="Confirm Password" required value={state.confirmPassword} onChange={valueChange} />
 
-            <button type="submit">REGISTER</button>
+            <li style={{color: state.rulesColor[0]}}><em>Your First And Last Name Must Not Contain Non Letter Characters</em></li>
+
+            <em>Your Password Must:</em>
+            <li style={{color: state.rulesColor[0]}}><em>Contain Between 8-36 Characters</em></li>
+            <li style={{color: state.rulesColor[1]}}><em>Match Eachother</em></li>
+            <li style={{color: state.rulesColor[2]}}><em>Contain At Least 1 Mixed Case Letter</em></li>
+            <li style={{color: state.rulesColor[3]}}><em>Contain At Least 1 Number</em></li>
+            <li style={{color: state.rulesColor[4]}}><em>Be Different From Your Email</em></li>
+
+
+            <button type="submit">SIGN UP</button>
 
         </form>
 
-
-        {state.lastName}
-        {state.password}
             
         </div>
     )

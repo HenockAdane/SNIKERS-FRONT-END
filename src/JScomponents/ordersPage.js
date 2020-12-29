@@ -12,6 +12,7 @@ function OrdersPage() {
     
     useEffect(()=>{
         if(currentUser){console.log(currentUser)} 
+        console.log(currentUser.orders[currentUser.orders.length - 1].products)
     }, [currentUser])
     
     
@@ -19,7 +20,7 @@ function OrdersPage() {
     return (
         <div className={styles.OrdersPage}>
 
-            {currentUser ? currentUser.orders.map(order => (
+            {currentUser && currentUser.orders ? currentUser.orders.map(order => (
                 <div className={styles.order}>
                 <div className={styles.orderHeader}>
 
@@ -43,16 +44,18 @@ function OrdersPage() {
                 {order.products.map(product => (
 
                     <div className={styles.product}>
-                    <img className={styles.img} src={product.frontImg} alt="product" />
+                    <img className={styles.img} src={product.images[0]} alt="product" />
 
                     <div className={styles.productDetails}>
-                        <p>{product.title}</p>
+                        <p>Title: {product.title}</p>
+                        <p>Color: {product.color[0]}</p>
+                        <p>Price: £{product.price}</p>
+                        <p>Size: {product.size}</p>
                         <p>Quantity: {product.quantity}</p>
-                        <p>£{product.price}</p>
                     
                         <div className={styles.btnContainer}>
                         <button className={styles.addToCartBtn} onClick={() => dispatch(addToCartAction(product))}>ADD TO CART</button>
-                        <Link className={styles.linkBtn} to={`/${product._id}`}>VIEW ITEM</Link>
+                        <Link className={styles.linkBtn} to={`/products/${product._id}`}>VIEW ITEM</Link>
                         </div>
                     </div>
                 </div>
@@ -72,3 +75,5 @@ function OrdersPage() {
 }
 
 export default OrdersPage
+
+

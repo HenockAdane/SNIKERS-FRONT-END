@@ -19,7 +19,7 @@ export const clearCartItems = () => ({
 
 
 const addingToCartFunction = (cartItems, item) => {
-    let exists = cartItems.find(a => a.title === item.title && a.color === item.color && a.size === item.size)
+    let exists = cartItems.find(a => a.title === item.title && a.color[0] === item.color[0] && a.size === item.size)
     
 
     if (exists){
@@ -33,7 +33,7 @@ const addingToCartFunction = (cartItems, item) => {
 
 
 const reducingFromCartFunction = (cartItems, item) => {
-    let cartItem = cartItems.find(a => a.title === item.title && a.color === item.color && a.size === item.size)
+    let cartItem = cartItems.find(a => a.title === item.title && a.color[0] === item.color[0] && a.size === item.size)
 
     if (cartItem.quantity > 1){
         return cartItems.map(a => a === cartItem ? {...a, quantity: a.quantity - 1} : a)
@@ -52,16 +52,7 @@ export const removeFromCartFunction = (cartItems, item) => {
 
 
 const IS = {
-    cartItems: [{color: "Black",
-    for: "Men",
-    frontImg: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/erzfadfpnzgkxt0gn2ya/air-max-plus-shoe-F5SqNr.jpg",
-    price: 139.95,
-    quantity: 1,
-    size: "12",
-    title: "Nike Air Max Plus",
-    type: "Shoe",
-    _id:"5fb3e107e9bc462028e7555b"
-}]
+    cartItems: []
 }
 const cartItemReducer = (state = IS, action) => {
         switch(action.type){

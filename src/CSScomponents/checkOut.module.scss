@@ -1,16 +1,19 @@
 .checkoutContainer{
     width: 700px;
     width: 100%;
-    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px auto ;
 
+    p{
+        font-size: 24px;text-align: center;
+    }
+
     .product{
-        width: 100%;
         display: flex;
-        border: 1px solid black;
+        justify-content: center;
+        margin: 10px 0;
 
         .img{
             width: 18%;
@@ -29,7 +32,6 @@
                 justify-content: space-between;
 
                 button{
-                    border: 1px solid green;
                     width: 30px;
                     font-size: 18px;
                     padding: 5px 0;

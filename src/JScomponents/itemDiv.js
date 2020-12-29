@@ -10,7 +10,7 @@ function ItemDiv(props) {
 
 
     return (
-        <Link to={`/${props.id}`} className={styles.product}>
+        <Link to={`/products/${props.id}`} className={styles.product}>
                 <div className={styles.imgContainer}>
                     <img src={props.frontImg} alt="product"/>
                 </div>

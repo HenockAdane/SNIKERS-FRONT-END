@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {addUser} from "../ReduxComponents/userReducer"
 import styles from "../CSScomponents/confirmationPage.module.scss"
 import Loader from './loading';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -17,7 +18,8 @@ function ConfirmationPage() {
 
     const [state, setState] = useState(() => ({
         attemptedConfirmationCode: "",
-        loading: false
+        loading: false,
+        errorMessage: ""
     }))
 
     const inputChange = (e) => {
@@ -48,7 +50,26 @@ function ConfirmationPage() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({currentUser: currentUser, attemptedConfirmationCode: state.attemptedConfirmationCode, attemptedDate: new Date().getTime()})
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+
+            if (res.status === 200){
+                return res.json()
+            }
+
+            setState(ps => ({
+                ...ps,
+                errorMessage: "There Was An Unexpected Error, Please Try Again"
+            }))
+
+            setInterval(() => {
+                setState(ps => ({
+                    ...ps,
+                    errorMessage: ""
+                }))
+                
+            }, 5000);
+
+        }).then(data => {
 
             setState(ps => ({
                 ...ps,
@@ -56,13 +77,27 @@ function ConfirmationPage() {
             }))
 
             if (data.user && data.user.confirmed){
-                alert(data.message)
+                setState(ps => ({
+                    ...ps,
+                    errorMessage: data.message
+                }))
                 dispatch(addUser(data.user))
             }
 
             else{
-                console.log(data)
-                alert(data.message)
+                setState(ps => ({
+                    ...ps,
+                    errorMessage: data.message
+                }))
+
+                setTimeout(()=>{
+                    setState(ps => ({
+                        ...ps,
+                        errorMessage: ""
+                    }))
+    
+                }, 5000);
+
             }
 
 
@@ -85,38 +120,71 @@ function ConfirmationPage() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(currentUser)
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+
+            if (res.status === 200){
+                return res.json()
+            }
+
+            else{
+                setState(ps => ({
+                    ...ps,
+                    errorMessage: "There Was An Unexpected Error, Please Try Again"
+                }))
+
+                setTimeout(()=>{
+                    setState(ps => ({
+                        ...ps,
+                        errorMessage: ""
+                    }))
+    
+                }, 5000);
+            }
+
+        }).then(data => {
 
             setState(ps => ({
                 ...ps,
-                loading: false
+                loading: false,
+                errorMessage: data.message
             }))
-            alert(data.message)
+
+            setTimeout(()=>{
+                setState(ps => ({
+                    ...ps,
+                    errorMessage: ""
+                }))
+
+            }, 5000);
+
 
         })
     }
 
     return (
-        <div className={styles.confirmationPage}>
+        currentUser ? (<div className={styles.confirmationPage}>
 
-        {state.loading ? <Loader fullScreen={true} /> : false}
+            {state.loading ? <Loader fullScreen={true} /> : false}
+    
+    
+            
+    
+    
+            <div className={styles.formContainer}>
+    
+                <h1>Thank You For Creating An Account</h1>
+                <p>To Fully Use This Account, Please Confirm The Confirmation Code Sent To The Email: {currentUser.email}</p>
+                <form className={styles.form} onSubmit={formSubmit}>
+                    <input type="text" name="attemptedConfirmationCode" required onChange={inputChange} value={state.attemptedConfirmationCode} placeholder="Enter Confirmation Code" />
 
+                    {state.errorMessage ? (<p style={{color: "red"}}><em>{state.errorMessage}</em></p>) : false}
 
-        
-
-
-        <div className={styles.formContainer}>
-
-            <h1>Thank You For Creating An Account</h1>
-            <p>To Fully Use This Account, Please Confirm The Confirmation Code Sent To The Email: {currentUser.email}</p>
-            <form className={styles.form} onSubmit={formSubmit}>
-                <input type="text" name="attemptedConfirmationCode" required onChange={inputChange} value={state.attemptedConfirmationCode} placeholder="Enter Confirmation Code" />
-                <input className={styles.submitBtn} type="submit" name="submitBtn" value="Confirm" />
-            </form>
-
-                <button className={styles.resendBtn} onClick={resendCode}>RESEND CODE</button>
-        </div>
-        </div>
+                    <input className={styles.submitBtn} type="submit" name="submitBtn" value="Confirm" />
+                </form>
+    
+                    <button className={styles.resendBtn} onClick={resendCode}>RESEND CODE</button>
+            </div>
+            </div>) : (<Redirect to="/" />)
     )
 }
 

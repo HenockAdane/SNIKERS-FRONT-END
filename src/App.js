@@ -7,7 +7,8 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import SignInOrUp from "./JScomponents/signInOrUp";
+import SignIn from "./JScomponents/signIn";
+import SignUp from "./JScomponents/signUp";
 import {addUser} from "./ReduxComponents/userReducer"
 import Home from "./JScomponents/home";
 import MensPage from "./JScomponents/mensPage";
@@ -48,6 +49,8 @@ function App() {
     })
   }
   console.log(cartItems)
+
+ 
   // cartItems.forEach(items => cartItemsQuantity+= items.quantity)
 
   useEffect(() => {
@@ -69,7 +72,7 @@ function App() {
       }
     })
 
-    fetch(`${process.env.REACT_APP_API}products`).then(res => res.json()).then(data => {
+    fetch(`${process.env.REACT_APP_API}products/all`).then(res => res.json()).then(data => {
       setState(ps => ({
         ...ps,
         products: data,
@@ -172,7 +175,7 @@ function App() {
         <Link className="nav-links" to="/contact-us">Contact</Link>
         <Link className="nav-links" to="/member">Account</Link>
 
-        {state.currentUser ? (<Link to="/signInOrUp" className="nav-links" onClick={logOut}>SignOut</Link>) : (<Link className="nav-links" to="/signInOrUp">SignIn/Up</Link>)}
+        {state.currentUser ? (<Link to="/signIn" className="nav-links" onClick={logOut}>SignOut</Link>) : (<Link className="nav-links" to="/signIn">SignIn</Link>)}
 
         <div className="cartIconContainer" onClick={cartDisplay}>
           <img className="cartIcon" src="/images/shoppingCart/shopping-bag.svg" alt="cartIcon"/>
@@ -183,7 +186,7 @@ function App() {
 
       <div className="cart-dropdown" style={{display: state.cartDisplay}}>
         <div className="cart-items">
-        {cartItems.length ? cartItems.map(a => <CartItemDiv id={a._id} frontImg={a.frontImg} title={a.title} quantity={a.quantity} price={a.price} size={a.size} color={a.color} />) : <p>Your Cart Is Empty</p>}
+        {cartItems.length ? cartItems.map(cartItem => <CartItemDiv cartItem={cartItem} />) : <p>Your Cart Is Empty</p>}
         </div>
         <p>Total Price: £{cartItemsTotalPrice.toFixed(2)}</p>
         <Link to="/checkout">GO TO CHECKOUT</Link>
@@ -246,7 +249,7 @@ function App() {
 
 
 <Route exact={false} path="/member" render={()=>(
-                state.currentUser && state.currentUser.confirmed ? (<MembersPage />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<Redirect to="/signInOrUp" />) )}
+                state.currentUser && state.currentUser.confirmed ? (<MembersPage />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<Redirect to="/signIn" />) )}
         />
 
         
@@ -258,7 +261,7 @@ function App() {
 
         })} */}
 
-        {state.products.map(product => <Route exact={true} path={`/${product._id}`} render={() => <ProductBig 
+        {/* {state.products.map(product => <Route exact={true} path={`/${product._id}`} render={() => <ProductBig 
         images={product.images}
         for={product.for}
         type={product.type}
@@ -274,13 +277,19 @@ function App() {
         id={product._id}
         
 
-        />} />)}
+        />} />)} */}
+
+        <Route exact={true} path={`/products/:id`} render={() => 
+        <ProductBig />}
+         />
         
 
-<Route exact={true} path="/signInOrUp" render={()=> 
-state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/settings" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignInOrUp />)}
+<Route exact={true} path="/signIn" render={()=> 
+state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/profile" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignIn />)}
         />
-
+<Route exact={true} path="/signUp" render={()=>(
+                <SignUp/>  )}
+        />
 
 
 <Route exact={true} path="/checkOut" render={()=>(
@@ -301,7 +310,7 @@ state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/settin
 
         <div>
           <li><Link to="/">HOME</Link></li>
-          <li><Link to="/signInOrUp">BECOME A MEMBER</Link></li>
+          <li><Link to="/signUp">BECOME A MEMBER</Link></li>
           <li><Link to="/contact-us">CONTACT US</Link></li>
         </div>
 
