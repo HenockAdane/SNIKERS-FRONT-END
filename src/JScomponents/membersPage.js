@@ -22,7 +22,7 @@ function MembersPage() {
       img: "/images/profile/benefits/membersOnlyProduct.jpg",
       imgBig: "/images/profile/benefits/membersOnlyProduct-Big.jpg",
       alt: "Woman Doing a Lunge",
-      description: "From first access to exclusive collaborations, Nike members get first dibs on our hottest shoes, apparel and gear."
+      description: "From first access to exclusive collaborations, Snikers members get first dibs on our hottest shoes, apparel and gear."
     },
     {
       title:"Free Delivery With Every Order",
@@ -36,7 +36,7 @@ function MembersPage() {
       img: "/images/profile/benefits/exclusiveDeals.jpg",
       imgBig: "/images/profile/benefits/exclusiveDeals-Big.jpg",
       alt: "Happy Birthday Box",
-      description: "Nike deals don't happen often, but when they do, Nike Members get more. We'll let you know about our special promos—like on your birthday and other key events throughout the year."
+      description: "Snikers deals don't happen often, but when they do, Snikers Members get more. We'll let you know about our special promos—like on your birthday and other key events throughout the year."
     }]
     return (
         currentUser ? (<div className={styles.membersPage}>
