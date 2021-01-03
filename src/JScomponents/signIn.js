@@ -83,6 +83,7 @@ function SignIn() {
 
             if (data.user){
                 dispatch(addUser(data.user))
+                localStorage.setItem("snikersUser", JSON.stringify(data.user))
             }
 
             else{

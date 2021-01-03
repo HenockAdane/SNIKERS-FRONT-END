@@ -80,7 +80,10 @@ function App() {
       // console.log(data[data.length - 1]._id)
       console.log(84.95 * 3)
     })
-  }, [])
+
+    const user =JSON.parse(localStorage.getItem("snikersUser"))
+    dispatch(addUser(user))
+  }, [dispatch])
 
 
   useEffect(()=> {
@@ -287,13 +290,17 @@ function App() {
 <Route exact={true} path="/signIn" render={()=> 
 state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/profile" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignIn />)}
         />
-<Route exact={true} path="/signUp" render={()=>(
-                <SignUp/>  )}
+<Route exact={true} path="/signUp" render={()=> 
+state.currentUser && state.currentUser.confirmed ? (<Redirect to="/member/profile" />) : state.currentUser ? (<Redirect to="/confirmation" />) : (<SignUp />)}
         />
 
 
 <Route exact={true} path="/checkOut" render={()=>(
                 <CheckOut />  )}
+        />
+
+<Route exact={true} path="*" render={()=>(
+                <Redirect to="/" />  )}
         />
 
 

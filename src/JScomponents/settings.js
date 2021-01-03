@@ -174,6 +174,7 @@ function Settings() {
             }).then(data => {
                 console.log(data)
                 dispatch(addUser(data.user))
+                localStorage.setItem("snikersUser", JSON.stringify(data.user))
                 setState(ps => ({
                     ...ps,
                     loading: false,
@@ -249,6 +250,7 @@ function Settings() {
 
                 if (data.user){
                     dispatch(addUser(data.user))
+                    localStorage.setItem("snikersUser", JSON.stringify(data.user))
                     setState(ps => ({
                         ...ps,
                         currentPassword: "",

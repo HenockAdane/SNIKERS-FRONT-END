@@ -46,6 +46,7 @@ function StripeBtn(props) {
 
                 dispatch(clearCartItems())
                 dispatch(addUser(data.user))
+                localStorage.setItem("snikersUser", JSON.stringify(data.user))
 
 
             

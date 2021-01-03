@@ -15,64 +15,155 @@ function SignUp() {
         password: "",
         confirmPassword: "",
         loading: false,
-        rulesColor: ["black","black","black","black","black"]
+        serverMessages: {
+            success: "",
+            error: ""
+        }
       }))
 
 
       const submit = (e) => {
           e.preventDefault()
 
-        if (/[^a-zA-Z]+/.test(state.firstName) || /[^a-zA-Z]+/.test(state.lastName)){
 
-            alert("The First Name Or Last Name Input Should Not Contain Anything But Letters")
+          if (/^[a-zA-Z]+$/.test(state.firstName) && /^[a-zA-Z]+$/.test(state.lastName)){
 
-        }
+            if(state.password.length > 7){
 
-        else{
+                if(state.password === state.confirmPassword){
 
 
-            if (state.password === state.confirmPassword){
+                    if (state.password !== state.email){
 
-                setState(ps => ({
-                    ...ps,
-                    loading: true
-                }))
+                        setState(ps => ({
+                            ...ps,
+                            loading: true
+                        }))
 
-                fetch(`${process.env.REACT_APP_API}signUp`, {
-                    method: "POST",
-                    mode: "cors",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        firstName: state.firstName,
-                        lastName: state.lastName,
-                        email: state.email,
-                        password: state.password
-                    })
-                }).then(res => res.json()).then(data => {
-                    console.log(data)
+                        fetch(`${process.env.REACT_APP_API}signUp`, {
+                            method: "POST",
+                            mode: "cors",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                firstName: state.firstName,
+                                lastName: state.lastName,
+                                email: state.email,
+                                password: state.password
+                            })
+                        }).then(res => {
 
-                    
+                            if (res.status === 200){
+                                return res.json()
+                            }
+
+                            else{
+                                setState(ps => ({
+                                    ...ps,
+                                    loading: false,
+                                    serverMessages: {
+                                        ...ps.serverMessages,
+                                        error: "There Has Been An Unexpected Error, Please Try Again"
+                                    }
+                                }))
+                            }
+                        }).then(data => {
+                            console.log(data)
         
-                    if (data.user){
+                            
+                
+                            if (data.user){
+        
+                                dispatch(addUser(data.user))
+                                localStorage.setItem("snikersUser", JSON.stringify(data.user))
+                                setState(ps => ({
+                                    ...ps,
+                                    loading: false,
+                                    firstName: "", 
+                                    lastName:"", 
+                                    email:"", 
+                                    password: "", 
+                                    confirmPassword: "", 
+                                }))
+                            }
+                            
 
-                        dispatch(addUser(data.user))
-                        
+                            else{
+                                setState(ps => ({
+                                    ...ps,
+                                    loading: false,
+                                    firstName: "", 
+                                    lastName:"", 
+                                    email:"", 
+                                    password: "", 
+                                    confirmPassword: "", 
+                                    serverMessages: {
+                                        ...ps.serverMessages,
+                                        error: data.message
+                                    }
+                                }))
+                            }
+                
+                            
+                
+                
+                
+                        }).catch(err => console.log(err))
+
                     }
-        
-                    setState(ps => ({...ps, firstName: "", lastName:"", email:"", password: "", confirmPassword: "", loading: false}))
-                    console.log(state)
-        
-        
-        
-                }).catch(err => console.log(err))
+
+                    else{
+                        setState(ps => ({
+                            ...ps,
+                            serverMessages: {
+                                ...ps.serverMessages,
+                                error: "Your Password Must Not Be The Same As Your Email"
+                            }
+                        }))
+
+                    }
+                }
+
+                else{
+                    setState(ps => ({
+                        ...ps,
+                        serverMessages: {
+                            ...ps.serverMessages,
+                            error: "Your Passwords Must Match"
+                        }
+                    }))
+                }
             }
 
             else{
-                alert("Passwords Must Match")
+                setState(ps => ({
+                    ...ps,
+                    serverMessages: {
+                        ...ps.serverMessages,
+                        error: "Your Password Length Must Be Longer Than 7 Characters"
+                    }
+                }))
+
             }
-        }
+
+          }
+
+          else{
+
+            setState(ps => ({
+                ...ps,
+                serverMessages: {
+                    ...ps.serverMessages,
+                    error: "Your Names Must Not Contain Anything But Letters"
+                }
+            }))
+
+          }
+
+       
+
+        
 
       }
 
@@ -101,14 +192,8 @@ function SignUp() {
             <input className={styles.input} type="password" name="password" placeholder="password" required value={state.password} onChange={valueChange} />
             <input className={styles.input} type="password" name="confirmPassword" placeholder="Confirm Password" required value={state.confirmPassword} onChange={valueChange} />
 
-            <li style={{color: state.rulesColor[0]}}><em>Your First And Last Name Must Not Contain Non Letter Characters</em></li>
+            {state.serverMessages.error ? <p style={{color: "red"}}>{state.serverMessages.error}</p> : false}
 
-            <em>Your Password Must:</em>
-            <li style={{color: state.rulesColor[0]}}><em>Contain Between 8-36 Characters</em></li>
-            <li style={{color: state.rulesColor[1]}}><em>Match Eachother</em></li>
-            <li style={{color: state.rulesColor[2]}}><em>Contain At Least 1 Mixed Case Letter</em></li>
-            <li style={{color: state.rulesColor[3]}}><em>Contain At Least 1 Number</em></li>
-            <li style={{color: state.rulesColor[4]}}><em>Be Different From Your Email</em></li>
 
 
             <button type="submit">SIGN UP</button>

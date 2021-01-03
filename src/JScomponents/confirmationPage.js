@@ -82,6 +82,7 @@ function ConfirmationPage() {
                     errorMessage: data.message
                 }))
                 dispatch(addUser(data.user))
+                localStorage.setItem("snikersUser", JSON.stringify(data.user))
             }
 
             else{
@@ -142,6 +143,9 @@ function ConfirmationPage() {
             }
 
         }).then(data => {
+
+            dispatch(addUser(data.user))
+            localStorage.setItem("snikersUser", JSON.stringify(data.user))
 
             setState(ps => ({
                 ...ps,
